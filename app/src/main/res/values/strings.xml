@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">student-scheduler</string>
+    <string name="calendar">calendar</string>
+    <string name="student">Student</string>
+    <string name="calendar_logo">calendar logo</string>
+    <string name="get_started">Get Started</string>
+    <string name="view_my_schedule">View My Schedule</string>
+</resources>
