@@ -8,8 +8,8 @@ public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termID;
     private String termTitle;
-    private String startDate;
-    private String endDate;
+    private String termStartDate;
+    private String termEndDate;
 
     public int getTermID() {
         return termID;
@@ -27,26 +27,26 @@ public class Term {
         this.termTitle = termTitle;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getTermStartDate() {
+        return termStartDate;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setStartDate(String termStartDate) {
+        this.termStartDate = termStartDate;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getTermEndDate() {
+        return termEndDate;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setTermEndDate(String termEndDate) {
+        this.termEndDate = termEndDate;
     }
 
-    public Term(int termID, String termTitle, String startDate, String endDate) {
+    public Term(int termID, String termTitle, String termStartDate, String termEndDate) {
         this.termID = termID;
         this.termTitle = termTitle;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.termStartDate = termStartDate;
+        this.termEndDate = termEndDate;
     }
 }
