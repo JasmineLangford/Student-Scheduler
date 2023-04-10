@@ -38,7 +38,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     // Room components
+    //noinspection GradleDependency
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
+    //noinspection GradleDependency
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 }
