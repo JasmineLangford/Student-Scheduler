@@ -13,22 +13,29 @@
         android:theme="@style/Theme.Studentscheduler"
         tools:targetApi="31">
         <activity
-            android:name="UI.TermDetails"
-            android:label="Term Details"
+            android:name=".TermModify"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="UI.TermList"
+            android:name=".TermDetails"
+            android:exported="false"
+            android:label="Term Details">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".TermList"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="UI.Main"
+            android:name=".Main"
             android:exported="true"
             android:label="Scheduler">
             <intent-filter>
