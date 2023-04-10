@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * This is the main activity in the student scheduler.
  */
-public class MainActivity extends AppCompatActivity {
+public class Main extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,12 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, TermList.class);
+                Intent intent = new Intent(Main.this, TermList.class);
                 startActivity(intent);
             }
         });
 
-        // Hide action bar on splash screen
+        // Hide the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
     }
 }
