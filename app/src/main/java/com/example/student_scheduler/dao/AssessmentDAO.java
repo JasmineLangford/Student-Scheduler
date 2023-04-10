@@ -11,6 +11,9 @@ import com.example.student_scheduler.entities.Assessment;
 
 import java.util.List;
 
+/**
+ * This interface defines the database operations that can be performed on the Assessment entity.
+ */
 @Dao
 public interface AssessmentDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)

@@ -9,6 +9,9 @@ import androidx.room.Update;
 import com.example.student_scheduler.entities.Course;
 import java.util.List;
 
+/**
+ * This interface defines the database operations that can be performed on the Course entity.
+ */
 @Dao
 public interface CourseDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)

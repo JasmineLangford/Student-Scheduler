@@ -6,11 +6,12 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
-
 import com.example.student_scheduler.entities.Term;
-
 import java.util.List;
 
+/**
+ * This interface defines the database operations that can be performed on the Term entity.
+ */
 @Dao
 public interface TermDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
