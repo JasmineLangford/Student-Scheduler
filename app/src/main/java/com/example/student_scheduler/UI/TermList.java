@@ -1,4 +1,4 @@
-package UI;
+package com.example.student_scheduler.UI;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
