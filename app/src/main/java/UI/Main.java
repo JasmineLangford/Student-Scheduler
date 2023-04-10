@@ -3,7 +3,6 @@ package UI;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import com.example.student_scheduler.R;
 import java.util.Objects;
@@ -20,18 +19,9 @@ public class Main extends AppCompatActivity {
 
         // View Schedule button
         Button button = findViewById(R.id.view_schedule);
-        button.setOnClickListener(new View.OnClickListener() {
-
-            /**
-             * Method called when view schedule button is clicked.
-             *
-             * @param view The view that was clicked.
-             */
-            @Override
-            public void onClick(View view) {
+        button.setOnClickListener(view -> {
                 Intent intent = new Intent(Main.this, TermList.class);
                 startActivity(intent);
-            }
         });
 
         // Hide the action bar
