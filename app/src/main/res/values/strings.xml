@@ -1,13 +1,7 @@
 <resources>
-    <string name="app_name">student-scheduler</string>
-    <string name="calendar">calendar</string>
-    <string name="student">Student</string>
-    <string name="calendar_logo">calendar logo</string>
-    <string name="get_started">Get Started</string>
+    <string name="calendar">Calendar</string>
     <string name="view_my_schedule">View My Schedule</string>
-    <string name="FAB_terms">floating action button to add terms</string>
-    <string name="add_term_selection">add term selection</string>
     <string name="welcome_back">Welcome Back</string>
-    <string name="here_are_your_scheduled_terms">scheduled_terms</string>
     <string name="scheduled_terms">Here are your scheduled terms.</string>
+    <string name="add_term_selection">Add New Term</string>
 </resources>
