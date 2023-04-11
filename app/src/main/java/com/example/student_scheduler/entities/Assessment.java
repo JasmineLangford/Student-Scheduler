@@ -3,7 +3,7 @@ package com.example.student_scheduler.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName="assessment")
+@Entity(tableName = "assessment")
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentID;
@@ -11,7 +11,8 @@ public class Assessment {
     private String assessmentTitle;
     private String assessmentEndDate;
 
-    public Assessment(int assessmentID, String assessmentType, String assessmentTitle, String assessmentEndDate) {
+    public Assessment(int assessmentID, String assessmentType, String assessmentTitle,
+                      String assessmentEndDate) {
         this.assessmentID = assessmentID;
         this.assessmentType = assessmentType;
         this.assessmentTitle = assessmentTitle;

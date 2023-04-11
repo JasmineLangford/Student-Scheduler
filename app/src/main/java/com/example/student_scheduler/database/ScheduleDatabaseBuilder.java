@@ -4,6 +4,8 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.example.student_scheduler.dao.AssessmentDAO;
 import com.example.student_scheduler.dao.CourseDAO;
 import com.example.student_scheduler.dao.TermDAO;
 import com.example.student_scheduler.entities.Assessment;
@@ -30,7 +32,7 @@ public abstract class ScheduleDatabaseBuilder extends RoomDatabase {
      * Returns an instance of AssessmentDAO, which provides access to the Assessment table in the
      * database.
      */
-    public abstract Assessment assessmentDAO();
+    public abstract AssessmentDAO assessmentDAO();
 
     public static volatile ScheduleDatabaseBuilder INSTANCE;
 

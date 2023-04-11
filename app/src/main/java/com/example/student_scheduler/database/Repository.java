@@ -13,10 +13,13 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * This class represents a repository that will interact with the scheduler database.
+ */
 public class Repository {
-    private TermDAO mTermDAO;
-    private CourseDAO mCourseDAO;
-    private AssessmentDAO mAssessmentDAO;
+    private final TermDAO mTermDAO;
+    private final CourseDAO mCourseDAO;
+    private final AssessmentDAO mAssessmentDAO;
     private List<Term> mAllTerms;
     private List<Course> mAllCourses;
     private List<Assessment> mAllAssessments;
@@ -24,11 +27,16 @@ public class Repository {
     private static final int NUMBER_OF_THREADS = 6;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
+    /**
+     * Constructs a new repository object using the given Application object.
+     *
+     * @param application The application object used to create the ScheduleDatabaseBuilder object.
+     */
     public Repository(Application application) {
         ScheduleDatabaseBuilder db = ScheduleDatabaseBuilder.getDatabase(application);
         mTermDAO = db.termDAO();
         mCourseDAO = db.courseDAO();
-        mAssessmentDAO = (AssessmentDAO) db.assessmentDAO();
+        mAssessmentDAO = db.assessmentDAO();
     }
 
     public List<Term> getAllTerms() {
