@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Button;
+
 import com.example.student_scheduler.R;
 
 import java.util.Objects;
@@ -23,15 +24,16 @@ public class Main extends AppCompatActivity {
         // View Schedule button
         Button button = findViewById(R.id.view_schedule);
         button.setOnClickListener(view -> {
-                Intent intent = new Intent(Main.this, TermList.class);
-                startActivity(intent);
+            Intent intent = new Intent(Main.this, TermList.class);
+            startActivity(intent);
         });
 
         // Hide the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 }
