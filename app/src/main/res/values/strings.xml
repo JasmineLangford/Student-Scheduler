@@ -13,4 +13,7 @@
     <string name="term_2">Term 2</string>
     <string name="term_1">Term 1</string>
     <string name="term_title">Term Title Here</string>
+    <string name="courses">Courses</string>
+    <string name="modify_term">Modify Term</string>
+    <string name="delete_term">Delete Term</string>
 </resources>
