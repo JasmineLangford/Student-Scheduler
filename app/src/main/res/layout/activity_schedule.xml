@@ -5,7 +5,9 @@
     android:id="@+id/view_assessments"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".UI.Schedule">
+
     <Button
         android:id="@+id/view_assessment"
         android:layout_width="333dp"
