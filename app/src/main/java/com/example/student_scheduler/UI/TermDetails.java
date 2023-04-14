@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import com.example.student_scheduler.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,7 +22,12 @@ public class TermDetails extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         FloatingActionButton fabTermDetails = findViewById(R.id.FAB_term_details);
-        fabTermDetails.setOnClickListener(view -> showTermSelections());
+        fabTermDetails.setOnClickListener(view -> addNewCourse());
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
     }
 
     /**
@@ -42,13 +48,13 @@ public class TermDetails extends AppCompatActivity {
      * This method is a dialog box that shows the selections available to the user once the floating
      * action button is clicked. The user has the option to modify, add or delete a term.
      */
-    public void showTermSelections() {
+    public void addNewCourse() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("")
 
                 // User selections for floating action button
-                .setItems(new String[]{"Modify Term", "Add New Term", "Delete Term"}, (dialog, which) -> {
-                    Intent intent = new Intent(TermDetails.this, TermModify.class);
+                .setItems(new String[]{"Add New Course"}, (dialog, which) -> {
+                    Intent intent = new Intent(TermDetails.this, TermAdd.class);
                     startActivity(intent);
                 });
         builder.create().show();

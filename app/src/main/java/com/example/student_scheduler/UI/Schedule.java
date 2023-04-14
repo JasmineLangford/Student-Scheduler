@@ -41,12 +41,6 @@ public class Schedule extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
     /**
      * This method handles the click event for the back button in the action bar. When the back
      * button is clicked, `onBackPressed()` is called to go back to the previous activity.
