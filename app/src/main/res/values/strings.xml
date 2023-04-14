@@ -1,7 +1,16 @@
 <resources>
-    <string name="calendar">Calendar</string>
-    <string name="view_my_schedule">View My Schedule</string>
-    <string name="welcome_back">Welcome Back</string>
-    <string name="scheduled_terms">Here are your scheduled terms.</string>
+    <!-- MainActivity UI -->
+    <string name="first_intro">Stay organized and on top of your studies with ease.</string>
+    <string name="second_intro">Input your class schedule, add deadlines and course notes, and set alerts to stay on track.</string>
+    <string name="get_started">Get Started</string>
+    <!-- Schedule UI -->
+    <string name="view_terms">View Terms</string>
+    <string name="view_courses">View Courses</string>
+    <string name="view_assessments">View Assessments</string>
+    <!-- TermList UI -->
     <string name="add_term_selection">Add New Term</string>
+    <string name="schedule">Schedule</string>
+    <string name="term_2">Term 2</string>
+    <string name="term_1">Term 1</string>
+    <string name="term_title">Term Title Here</string>
 </resources>
