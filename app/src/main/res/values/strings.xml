@@ -4,16 +4,23 @@
     <string name="second_intro">Input your class schedule, add deadlines and course notes, and set alerts to stay on track.</string>
     <string name="get_started">Get Started</string>
     <!-- Schedule UI -->
+    <string name="schedule">Schedule</string>
     <string name="view_terms">View Terms</string>
     <string name="view_courses">View Courses</string>
     <string name="view_assessments">View Assessments</string>
     <!-- TermList UI -->
+    <string name="no_terms">There are no terms on your schedule. Please add a new term.</string>
     <string name="add_term_selection">Add New Term</string>
-    <string name="schedule">Schedule</string>
-    <string name="term_2">Term 2</string>
-    <string name="term_1">Term 1</string>
     <string name="term_title">Term Title Here</string>
     <string name="courses">Courses</string>
     <string name="modify_term">Modify Term</string>
     <string name="delete_term">Delete Term</string>
+    <string name="textview">TextView</string>
+    <string name="hi_1">Hi!</string>
+    <string name="hi_2">Hi!</string>
+    <string name="hi_3">Hi!</string>
+    <string name="low_1">Low</string>
+    <string name="low_2">Low</string>
+    <string name="low_3">Low</string>
+    <string name="add_new_course">Add New Course</string>
 </resources>
