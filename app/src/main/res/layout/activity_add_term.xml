@@ -3,6 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.TermModify">
+    tools:context=".UI.AddTerm">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

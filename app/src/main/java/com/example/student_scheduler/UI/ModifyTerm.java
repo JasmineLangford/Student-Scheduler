@@ -11,12 +11,12 @@ import com.example.student_scheduler.R;
  * This activity allows the user to modify existing term details that will auto-populate into the
  * form fields.
  */
-public class TermModify extends AppCompatActivity {
+public class ModifyTerm extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_term_modify);
+        setContentView(R.layout.activity_modify_term);
     }
 
     /**
