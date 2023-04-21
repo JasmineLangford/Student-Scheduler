@@ -23,4 +23,9 @@
     <string name="low_2">Low</string>
     <string name="low_3">Low</string>
     <string name="add_new_course">Add New Course</string>
+    <string name="add_new_assessment">Add New Assessment</string>
+    <string name="add_new_term">Add New Term</string>
+    <string name="view_course_details">View Course Details</string>
+    <string name="view_assessment_details">View Assessment Details</string>
+    <string name="view_term_details">View Term Details</string>
 </resources>

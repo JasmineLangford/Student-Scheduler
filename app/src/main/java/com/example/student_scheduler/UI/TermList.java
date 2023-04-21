@@ -2,6 +2,8 @@ package com.example.student_scheduler.UI;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -25,23 +28,22 @@ public class TermList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
 
-        // SAMPLE DATA
-        Term term = new Term(0, "Term 1", "01/01/2023","06/20/2023");
-        Repository repository = new Repository(getApplication());
-
-        // Display current terms from repository
-//        RecyclerView termListRecycler = findViewById(R.id.term_list_recycler);
-//        final TermAdapter termAdapter = new TermAdapter(this);
-//        termListRecycler.setAdapter(termAdapter);
-//        termListRecycler.setLayoutManager(new LinearLayoutManager(this));
-//        repository=new Repository(getApplication());
-//        List<Term> allTerms = repository.getAllTerms();
-//        termAdapter.setTerms(allTerms);
+        //Display current terms from repository
+        RecyclerView termListRecycler = findViewById(R.id.term_list_recycler);
+        final TermAdapter termAdapter = new TermAdapter(this);
+        termListRecycler.setAdapter(termAdapter);
+        termListRecycler.setLayoutManager(new LinearLayoutManager(this));
+        repository=new Repository(getApplication());
+        List<Term> allTerms = repository.getAllTerms();
+        termAdapter.setTerms(allTerms);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fabTermDetails = findViewById(R.id.FAB_add_course);
-        fabTermDetails.setOnClickListener(view -> showAddTermDialog());
+        FloatingActionButton termsFAB = findViewById(R.id.to_term_details);
+        termsFAB.setOnClickListener(view -> {
+            Intent intent = new Intent(TermList.this,TermDetails.class);
+            startActivity(intent);
+        });
     }
 
     /**

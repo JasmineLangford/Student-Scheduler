@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
-import com.example.student_scheduler.entities.Course;
+import com.example.student_scheduler.entities.Term;
 
 import java.util.Objects;
 
@@ -23,17 +23,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Test Data
-        Course course1 = new Course(0,"Chemistry","01/01/2023",
-                "02/28/2023", "In Progress","Mr.Sunshine",
-                "244-245-5644","sunny@wgu.edu"," ");
+        Term term1 = new Term(0,"Term 1","01/01/2023","06/30/2023");
 
         Repository repository = new Repository(getApplication());
-        repository.insert(course1);
+        repository.insert(term1);
 
         // View Schedule button
-        Button button = findViewById(R.id.view_schedule);
-        button.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, Schedule.class);
+        Button getStartedButton = findViewById(R.id.view_term);
+        getStartedButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, TermList.class);
             startActivity(intent);
         });
 
