@@ -60,17 +60,17 @@ public class TermList extends AppCompatActivity {
         }
     }
 
-    /**
-     * This method contains the option to add a new term when the user clicks the floating action
-     * button.
-     */
-    public void showAddTermDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("")
-                .setItems(new String[]{"Add New Term"}, (dialog, which) -> {
-                    Intent intent = new Intent(TermList.this, AddTerm.class);
-                    startActivity(intent);
-                });
-        builder.create().show();
-    }
+//    /**
+//     * This method contains the option to add a new term when the user clicks the floating action
+//     * button.
+//     */
+//    public void showAddTermDialog() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("")
+//                .setItems(new String[]{"Add New Term"}, (dialog, which) -> {
+//                    Intent intent = new Intent(TermList.this, AddTerm.class);
+//                    startActivity(intent);
+//                });
+//        builder.create().show();
+//    }
 }
