@@ -3,7 +3,10 @@ package com.example.student_scheduler.entities;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName="terms")
+/**
+ * This class represents the terms table in the database.
+ */
+@Entity(tableName = "terms")
 public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termID;
@@ -11,6 +14,16 @@ public class Term {
     private String termStartDate;
     private String termEndDate;
 
+    public Term(int termID, String termTitle, String termStartDate, String termEndDate) {
+        this.termID = termID;
+        this.termTitle = termTitle;
+        this.termStartDate = termStartDate;
+        this.termEndDate = termEndDate;
+    }
+
+    public Term(){
+
+    }
     public int getTermID() {
         return termID;
     }
@@ -40,13 +53,6 @@ public class Term {
     }
 
     public void setTermEndDate(String termEndDate) {
-        this.termEndDate = termEndDate;
-    }
-
-    public Term(int termID, String termTitle, String termStartDate, String termEndDate) {
-        this.termID = termID;
-        this.termTitle = termTitle;
-        this.termStartDate = termStartDate;
         this.termEndDate = termEndDate;
     }
 }
