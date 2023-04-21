@@ -54,7 +54,7 @@ public class TermDetails extends AppCompatActivity {
 
                 // User selections for floating action button
                 .setItems(new String[]{"Add New Course"}, (dialog, which) -> {
-                    Intent intent = new Intent(TermDetails.this, TermAdd.class);
+                    Intent intent = new Intent(TermDetails.this, AddTerm.class);
                     startActivity(intent);
                 });
         builder.create().show();
