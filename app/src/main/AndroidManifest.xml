@@ -33,65 +33,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".UI.AddCourse"
-            android:exported="false"
-            android:label="Add New Course"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UI.AssessmentList"
-            android:exported="false"
-            android:label="Assessments"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UI.CourseList"
-            android:exported="false"
-            android:label="Courses"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UI.Schedule"
-            android:exported="false"
-            android:label="Schedule"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UI.AddTerm"
-            android:exported="false"
-            android:label="Add New Term"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UI.ModifyTerm"
-            android:exported="false"
-            android:label="Modify Term"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".UI.TermDetails"
             android:exported="false"
             android:label="Term Details"
