@@ -25,9 +25,9 @@ public interface AssessmentDAO {
     @Delete
     void delete(Assessment assessment);
 
-    @Query("SELECT * FROM ASSESSMENT ORDER BY assessmentID ASC")
+    @Query("SELECT * FROM ASSESSMENTS ORDER BY assessmentID ASC")
     List<Assessment> getAllAssessments();
 
-    @Query("SELECT * FROM ASSESSMENT WHERE assessmentID= :assessmentID ORDER BY assessmentID ASC")
+    @Query("SELECT * FROM ASSESSMENTS WHERE assessmentID= :assessmentID ORDER BY assessmentID ASC")
     List<Assessment> getAssociatedAssessments(int assessmentID);
 }
