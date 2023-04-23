@@ -1,10 +1,8 @@
 package com.example.student_scheduler.UI;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,7 +12,6 @@ import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Course;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -28,9 +25,10 @@ public class TermList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.onResume();
         setContentView(R.layout.activity_term_list);
 
-        //Display current terms from repository
+        // Display current terms in recyclerview
         RecyclerView termListRecycler = findViewById(R.id.term_list_recycler);
         final TermAdapter termAdapter = new TermAdapter(this);
         termListRecycler.setAdapter(termAdapter);
@@ -39,11 +37,13 @@ public class TermList extends AppCompatActivity {
         List<Term> allTerms = repository.getAllTerms();
         termAdapter.setTerms(allTerms);
 
+        // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton termsFAB = findViewById(R.id.to_term_details);
+        // FAB navigates to view term details
+        FloatingActionButton termsFAB = findViewById(R.id.to_term_list);
         termsFAB.setOnClickListener(view -> {
-            Intent intent = new Intent(TermList.this,TermDetails.class);
+            Intent intent = new Intent(TermList.this,AddTerm.class);
             startActivity(intent);
         });
     }
@@ -69,10 +69,10 @@ public class TermList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addSampleData:
-                Term term2 = new Term(0, "Term 2", "07/01/2023",
-                        "12/30/2023");
+                Term term1 = new Term(0, "Term 1", "01/01/2023",
+                        "06/30/2023");
                 Repository repository = new Repository(getApplication());
-                repository.insert(term2);
+                repository.insert(term1);
                 Course course1 = new Course(0, 1, "Chemistry", "01/01/2023", "06/30/2023",
                         "In Progress", "Mr. Sunny", "456-234-6677", "sunny@wgu.edu", " ");
                 repository.insert(course1);
