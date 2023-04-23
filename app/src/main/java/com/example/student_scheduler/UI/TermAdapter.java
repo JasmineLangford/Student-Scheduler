@@ -17,7 +17,6 @@ import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder> {
 
-
     class TermListHolder extends RecyclerView.ViewHolder {
         private final TextView termItemView;
 
@@ -27,13 +26,13 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position = getAbsoluteAdapterPosition();
+                    int position = getBindingAdapterPosition();
                     final Term current = mTerms.get(position);
                     Intent intent = new Intent(context, TermDetails.class);
-                    intent.putExtra("id",current.getTermID());
-                    intent.putExtra("title",current.getTermTitle());
-                    intent.putExtra("term_start",current.getTermStartDate());
-                    intent.putExtra("term_end",current.getTermEndDate());
+                    intent.putExtra("term_id", current.getTermID());
+                    intent.putExtra("term_title", current.getTermTitle());
+                    intent.putExtra("term_start", current.getTermStartDate());
+                    intent.putExtra("term_end", current.getTermEndDate());
                 }
             });
         }
@@ -51,19 +50,24 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
     @NonNull
     @Override
     public TermAdapter.TermListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.term_list_item,parent,false);
+        View itemView = mInflater.inflate(R.layout.term_list_item, parent, false);
         return new TermListHolder((itemView));
     }
 
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermListHolder holder, int position) {
-        if(mTerms != null){
+        if (mTerms != null) {
             Term current = mTerms.get(position);
             String termTitle = current.getTermTitle();
             holder.termItemView.setText(termTitle);
-
-        }
-        else{
+            holder.termItemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context,TermDetails.class);
+                    context.startActivity(intent);
+                }
+            });
+        } else {
             holder.termItemView.setText(R.string.no_terms);
         }
     }
