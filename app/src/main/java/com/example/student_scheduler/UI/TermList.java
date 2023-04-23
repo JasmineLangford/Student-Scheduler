@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
+import com.example.student_scheduler.entities.Course;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -46,18 +48,37 @@ public class TermList extends AppCompatActivity {
         });
     }
 
-    /**
-     * This method handles the click event for the back button in the action bar. When the back
-     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
-     */
+//    /**
+//     * This method handles the click event for the back button in the action bar. When the back
+//     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
+//     */
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case android.R.id.home:
+//                onBackPressed();
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
+            case R.id.addSampleData:
+                Term term2 = new Term(0, "Term 2", "07/01/2023",
+                        "12/30/2023");
+                Repository repository = new Repository(getApplication());
+                repository.insert(term2);
+                Course course1 = new Course(0, 1, "Chemistry", "01/01/2023", "06/30/2023",
+                        "In Progress", "Mr. Sunny", "456-234-6677", "sunny@wgu.edu", " ");
+                repository.insert(course1);
                 return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
+        return super.onOptionsItemSelected(item);
     }
 
 //    /**
