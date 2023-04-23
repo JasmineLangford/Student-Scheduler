@@ -21,6 +21,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -31,22 +33,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="@string/term_title"
+                    android:text="@string/term_title_label"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/term_title"
+                    android:id="@+id/term_title_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:autofillHints=""
                     android:hint="@string/enter_term_title"
-                    android:textColorHint="@color/hint_text"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:inputType="text"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:autofillHints=""
-                    android:inputType="text" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -59,20 +61,20 @@
                     android:layout_height="48dp"
                     android:text="@string/term_start_date"
                     android:textColor="@color/black"
-                    android:textSize="16sp"  />
+                    android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/start_date"
+                    android:id="@+id/term_start_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:autofillHints=""
                     android:hint="@string/enter_start_date"
-                    android:textColorHint="@color/hint_text"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
+                    android:inputType="date"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:autofillHints=""
-                    android:inputType="date" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -89,45 +91,62 @@
                     android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/end_date"
+                    android:id="@+id/term_end_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:autofillHints=""
                     android:hint="@string/enter_end_date"
-                    android:textColorHint="@color/hint_text"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
+                    android:inputType="date"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
-                    android:autofillHints=""
-                    android:inputType="date" />
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/to_course_details"
+        android:id="@+id/FAB_term_options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="38dp"
         android:layout_marginBottom="24dp"
         android:clickable="true"
+        android:contentDescription="@string/view_course_details"
         app:backgroundTint="#D13DDC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="@android:color/white"
-        tools:ignore="ImageContrastCheck,ImageContrastCheck"
-        android:contentDescription="@string/view_course_details" />
+        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
     <Button
-        android:id="@+id/save_new_term"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
+        android:id="@+id/update_term"
+        android:layout_width="303dp"
+        android:layout_height="50dp"
+        android:background="#6200EE"
+        android:text="@string/update_button"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.439" />
+
+    <Button
+        android:id="@+id/delete_term"
+        android:layout_width="303dp"
+        android:layout_height="50dp"
+        android:background="#6200EE"
+        android:text="@string/delete_button"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.619" />
+        app:layout_constraintVertical_bias="0.559" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
