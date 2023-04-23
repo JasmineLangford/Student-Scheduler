@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -53,7 +54,6 @@ public class AddTerm extends AppCompatActivity {
         termID = getIntent().getIntExtra("term_id",-1);
         Button button = findViewById(R.id.save_new_term);
         button.setOnClickListener(view -> {
-            // Save new term
             if (termID == -1) {
                 term = new Term(0, editTermTitle.getText().toString(),
                         editTermStart.getText().toString(), editTermEnd.getText().toString());
@@ -67,6 +67,20 @@ public class AddTerm extends AppCompatActivity {
         });
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    }
+
+    /**
+     * This method handles the click event for the back button in the action bar. When the back
+     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
+     */
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }
