@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".UI.TermList">
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!--com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/to_term_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_input_add"
         app:tint="@android:color/white"
-        android:contentDescription="@string/add_new_term"/>
+        android:contentDescription="@string/add_new_term"/-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/term_list_recycler"

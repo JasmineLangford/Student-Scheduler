@@ -40,12 +40,12 @@ public class TermList extends AppCompatActivity {
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // FAB navigates to view term details
-        FloatingActionButton termsFAB = findViewById(R.id.to_term_list);
-        termsFAB.setOnClickListener(view -> {
-            Intent intent = new Intent(TermList.this,AddTerm.class);
-            startActivity(intent);
-        });
+//        // FAB navigates to view term details
+//        FloatingActionButton termsFAB = findViewById(R.id.to_term_list);
+//        termsFAB.setOnClickListener(view -> {
+//            Intent intent = new Intent(TermList.this,AddTerm.class);
+//            startActivity(intent);
+//        });
     }
 
 //    /**
@@ -61,11 +61,14 @@ public class TermList extends AppCompatActivity {
 //                return super.onOptionsItemSelected(item);
 //        }
 //    }
+
+    // TODO: Delete this boolean
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    // TODO: Delete this boolean
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addSampleData:
