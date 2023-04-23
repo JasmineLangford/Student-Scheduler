@@ -16,7 +16,7 @@ import com.example.student_scheduler.entities.Term;
  * This class represents the SQLite database for the scheduler application.
  */
 @Database(entities = {Term.class, Course.class, Assessment.class}, version = 1, exportSchema = false)
-public abstract class ScheduleDatabaseBuilder extends RoomDatabase {
+public abstract class SchedulerDatabaseBuilder extends RoomDatabase {
 
     /**
      * Returns an instance of TermDAO, which provides access to the Term table in the database.
@@ -34,13 +34,14 @@ public abstract class ScheduleDatabaseBuilder extends RoomDatabase {
      */
     public abstract AssessmentDAO assessmentDAO();
 
-    public static volatile ScheduleDatabaseBuilder INSTANCE;
+    public static volatile SchedulerDatabaseBuilder INSTANCE;
 
-    static ScheduleDatabaseBuilder getDatabase(final Context context) {
+    static SchedulerDatabaseBuilder getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (ScheduleDatabaseBuilder.class) {
+            synchronized (SchedulerDatabaseBuilder.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), ScheduleDatabaseBuilder.class, "SchedulerDatabase.db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
+                                    SchedulerDatabaseBuilder.class, "SchedulerDatabase.db")
                             .fallbackToDestructiveMigration()
                             .build();
                 }
