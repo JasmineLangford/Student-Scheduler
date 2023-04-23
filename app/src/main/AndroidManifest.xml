@@ -13,19 +13,9 @@
         android:theme="@style/Theme.Studentscheduler"
         tools:targetApi="31">
         <activity
-            android:name=".UI.AssessmentDetails"
+            android:name=".UI.AddCourse"
             android:exported="false"
-            android:label="Assessment Details"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UI.CourseDetails"
-            android:exported="false"
-            android:label="Course Details"
+            android:label="Add New Course"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat">
             <meta-data
@@ -36,30 +26,42 @@
             android:name=".UI.AddTerm"
             android:exported="false"
             android:label="Add New Term"
-            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".UI.TermDetails"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".UI.AssessmentDetails"
             android:exported="false"
-            android:label="Term Details"
+            android:label="Assessment Details"
             android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".UI.TermList"
+            android:name=".UI.AssessmentList"
             android:exported="false"
-            android:label="Select Term"
+            android:label="Select Assessment"
             android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UI.CourseDetails"
+            android:exported="false"
+            android:label="Course Details"
+            android:parentActivityName=".UI.MainActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -88,6 +90,29 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".UI.TermDetails"
+            android:exported="false"
+            android:label="Term Details"
+            android:parentActivityName=".UI.MainActivity"
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UI.TermList"
+            android:exported="false"
+            android:label="Select Term"
+            android:parentActivityName=".UI.MainActivity"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+
     </application>
 
 </manifest>
