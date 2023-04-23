@@ -24,6 +24,7 @@ public class Term {
     public Term(){
 
     }
+
     public int getTermID() {
         return termID;
     }
@@ -44,7 +45,7 @@ public class Term {
         return termStartDate;
     }
 
-    public void setStartDate(String termStartDate) {
+    public void setTermStartDate(String termStartDate) {
         this.termStartDate = termStartDate;
     }
 
