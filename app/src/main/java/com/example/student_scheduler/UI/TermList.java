@@ -16,8 +16,9 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This activity provides the user with a list of terms along with the details of the term when
- * the expand arrow is clicked.
+ * This activity provides the user with a list of available terms displayed in a recyclerview,
+ * which pulls data from the database. Upon selection of a term, details for that term will be
+ * populated on the next screen.
  */
 public class TermList extends AppCompatActivity {
     private Repository repository;
@@ -25,7 +26,6 @@ public class TermList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        super.onResume();
         setContentView(R.layout.activity_term_list);
 
         // Display current terms in recyclerview
@@ -40,27 +40,13 @@ public class TermList extends AppCompatActivity {
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-//        // FAB navigates to view term details
-//        FloatingActionButton termsFAB = findViewById(R.id.to_term_list);
-//        termsFAB.setOnClickListener(view -> {
-//            Intent intent = new Intent(TermList.this,AddTerm.class);
-//            startActivity(intent);
-//        });
+        // FAB navigates to add new term
+        FloatingActionButton termFAB = findViewById(R.id.FAB_add_term);
+        termFAB.setOnClickListener(view -> {
+            Intent intent = new Intent(TermList.this,AddTerm.class);
+            startActivity(intent);
+        });
     }
-
-//    /**
-//     * This method handles the click event for the back button in the action bar. When the back
-//     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
-//     */
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case android.R.id.home:
-//                onBackPressed();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
     // TODO: Delete this boolean
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -83,18 +69,4 @@ public class TermList extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-//    /**
-//     * This method contains the option to add a new term when the user clicks the floating action
-//     * button.
-//     */
-//    public void showAddTermDialog() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("")
-//                .setItems(new String[]{"Add New Term"}, (dialog, which) -> {
-//                    Intent intent = new Intent(TermList.this, AddTerm.class);
-//                    startActivity(intent);
-//                });
-//        builder.create().show();
-//    }
 }
