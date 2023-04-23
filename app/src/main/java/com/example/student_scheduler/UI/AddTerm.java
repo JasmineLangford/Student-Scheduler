@@ -12,8 +12,14 @@ import android.widget.Toast;
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Term;
+
 import java.util.Objects;
 
+
+/**
+ * This activity allows the user to add a new term to the database and displays the new term on the
+ * screen with the listed terms once the Save button is clicked.
+ */
 public class AddTerm extends AppCompatActivity {
 
     EditText editTermTitle;
@@ -26,7 +32,7 @@ public class AddTerm extends AppCompatActivity {
     Term term;
     Repository repository;
 
-    // Confirmation Messages
+    // Confirmation Message
     String confirmMessage = "New term was successfully added.";
 
     @Override
@@ -51,14 +57,16 @@ public class AddTerm extends AppCompatActivity {
 
         // Save fields
         repository = new Repository(getApplication());
-        termID = getIntent().getIntExtra("term_id",-1);
+        termID = getIntent().getIntExtra("term_id", -1);
         Button button = findViewById(R.id.save_new_term);
         button.setOnClickListener(view -> {
             if (termID == -1) {
                 term = new Term(0, editTermTitle.getText().toString(),
                         editTermStart.getText().toString(), editTermEnd.getText().toString());
                 repository.insert(term);
-                Toast.makeText(getApplication(),confirmMessage,Toast.LENGTH_SHORT).show();
+
+                // Message to confirm add
+                Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
 
                 // Back to screen with list of terms
                 Intent intent = new Intent(this, TermList.class);
