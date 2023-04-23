@@ -24,7 +24,7 @@ public class Repository {
     private List<Course> mAllCourses;
     private List<Assessment> mAllAssessments;
 
-    private static final int NUMBER_OF_THREADS = 6;
+    private static final int NUMBER_OF_THREADS = 4;
     static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     /**
@@ -33,7 +33,7 @@ public class Repository {
      * @param application The application object used to create the ScheduleDatabaseBuilder object.
      */
     public Repository(Application application) {
-        ScheduleDatabaseBuilder db = ScheduleDatabaseBuilder.getDatabase(application);
+        SchedulerDatabaseBuilder db = SchedulerDatabaseBuilder.getDatabase(application);
         mTermDAO = db.termDAO();
         mCourseDAO = db.courseDAO();
         mAssessmentDAO = db.assessmentDAO();
