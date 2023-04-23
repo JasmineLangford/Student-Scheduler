@@ -33,6 +33,16 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".UI.AddTerm"
+            android:exported="false"
+            android:label="Add New Term"
+            android:parentActivityName=".UI.MainActivity"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".UI.TermDetails"
             android:exported="false"
             android:label="Term Details"
