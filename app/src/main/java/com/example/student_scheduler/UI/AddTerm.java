@@ -2,13 +2,12 @@ package com.example.student_scheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Term;
@@ -26,7 +25,9 @@ public class AddTerm extends AppCompatActivity {
     Term term;
     Repository repository;
 
-    @SuppressLint("MissingInflatedId" )
+    // Confirmation Messages
+    String confirmMessage = "New term was successfully added.";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,47 +44,29 @@ public class AddTerm extends AppCompatActivity {
         editTermStart.setText(termStartEdit);
         editTermEnd.setText(termEndEdit);
 
+        // Cancel and go back to list of terms
+        Button cancel = findViewById(R.id.cancel_button);
+        cancel.setOnClickListener(view -> finish());
+
         // Save fields
         repository = new Repository(getApplication());
         termID = getIntent().getIntExtra("term_id",-1);
         Button button = findViewById(R.id.save_new_term);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Save new term
-                if (termID == -1) {
-                    term = new Term(0,editTermTitle.getText().toString(),
-                            editTermStart.getText().toString(),editTermEnd.getText().toString());
-                    repository.insert(term);
-                }
-                // Update existing term
-                else {
-                    term = new Term(0,editTermTitle.getText().toString(),
-                            editTermStart.getText().toString(),editTermEnd.getText().toString());
-                    repository.update(term);
-                }
+        button.setOnClickListener(view -> {
+            // Save new term
+            if (termID == -1) {
+                term = new Term(0, editTermTitle.getText().toString(),
+                        editTermStart.getText().toString(), editTermEnd.getText().toString());
+                repository.insert(term);
+                Toast.makeText(getApplication(),confirmMessage,Toast.LENGTH_SHORT).show();
+
+                // Back to screen with list of terms
+                Intent intent = new Intent(this, TermList.class);
+                startActivity(intent);
             }
         });
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
-    }
-
-    /**
-     * This method handles the click event for the back button in the action bar. When the back
-     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
-     */
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }
