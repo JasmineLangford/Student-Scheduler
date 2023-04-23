@@ -44,6 +44,7 @@
         </activity>
         <activity
             android:name=".UI.TermDetails"
+            android:windowSoftInputMode="adjustPan"
             android:exported="false"
             android:label="Term Details"
             android:parentActivityName=".UI.MainActivity"
@@ -56,6 +57,16 @@
             android:name=".UI.TermList"
             android:exported="false"
             android:label="Terms"
+            android:parentActivityName=".UI.MainActivity"
+            android:theme="@style/Theme.AppCompat">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UI.CourseList"
+            android:exported="false"
+            android:label="Courses"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat">
             <meta-data
