@@ -7,11 +7,12 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView2"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/textview2"
+        android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="110dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
