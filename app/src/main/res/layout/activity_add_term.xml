@@ -31,7 +31,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="Term Title"
+                    android:text="@string/term_title_label"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -39,11 +39,11 @@
                     android:id="@+id/term_title_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:hint="Enter Term Title"
-                    android:textColorHint="@color/hint_text"
+                    android:hint="Enter Title"
+                    android:paddingStart="16dp"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:paddingStart="16dp"/>
+                    android:textColorHint="#757575"
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,10 +63,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:hint="Enter Start Date"
-                    android:textColorHint="@color/hint_text"
-                    android:textSize="16sp"
+                    android:paddingStart="16dp"
                     android:textColor="@color/black"
-                    android:paddingStart="16dp" />
+                    android:textColorHint="#757575"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -87,10 +87,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:hint="Enter End Date"
-                    android:textColorHint="@color/hint_text"
-                    android:textSize="16sp"
+                    android:paddingStart="16dp"
                     android:textColor="@color/black"
-                    android:paddingStart="16dp" />
+                    android:textColorHint="#757575"
+                    android:textSize="16sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -101,27 +101,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#D13DDC"
-        android:text="Save"
+        android:text="@string/save_button"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.572"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:text="Cancel"
+        android:text="@string/cancel_button"
         android:textColor="#AB47BC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintHorizontal_bias="0.91"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.565" />
+        app:layout_constraintVertical_bias="0.458" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
