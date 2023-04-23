@@ -36,6 +36,7 @@
             android:name=".UI.AddTerm"
             android:exported="false"
             android:label="Add New Term"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat">
             <meta-data
@@ -56,7 +57,7 @@
         <activity
             android:name=".UI.TermList"
             android:exported="false"
-            android:label="Terms"
+            android:label="Select Term"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat">
             <meta-data
@@ -66,7 +67,7 @@
         <activity
             android:name=".UI.CourseList"
             android:exported="false"
-            android:label="Courses"
+            android:label="Select Course"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.AppCompat">
             <meta-data
