@@ -3,15 +3,18 @@ package com.example.student_scheduler.UI;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Course;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -21,7 +24,6 @@ import java.util.Objects;
  * populated on the next screen.
  */
 public class TermList extends AppCompatActivity {
-    private Repository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class TermList extends AppCompatActivity {
         final TermAdapter termAdapter = new TermAdapter(this);
         termListRecycler.setAdapter(termAdapter);
         termListRecycler.setLayoutManager(new LinearLayoutManager(this));
-        repository=new Repository(getApplication());
+        Repository repository = new Repository(getApplication());
         List<Term> allTerms = repository.getAllTerms();
         termAdapter.setTerms(allTerms);
 
@@ -43,7 +45,7 @@ public class TermList extends AppCompatActivity {
         // FAB navigates to add new term
         FloatingActionButton termFAB = findViewById(R.id.FAB_add_term);
         termFAB.setOnClickListener(view -> {
-            Intent intent = new Intent(TermList.this,AddTerm.class);
+            Intent intent = new Intent(TermList.this, AddTerm.class);
             startActivity(intent);
         });
     }

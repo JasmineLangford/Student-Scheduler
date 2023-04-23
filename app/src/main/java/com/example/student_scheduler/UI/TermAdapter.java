@@ -1,5 +1,6 @@
 package com.example.student_scheduler.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -54,6 +55,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
         return new TermListHolder((itemView));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermListHolder holder, int position) {
         if (mTerms != null) {
@@ -63,12 +65,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
             holder.termItemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context,TermDetails.class);
+                    Intent intent = new Intent(context, TermDetails.class);
                     context.startActivity(intent);
                 }
             });
         } else {
-            holder.termItemView.setText(R.string.no_terms);
+            holder.termItemView.setText("No available terms.");
         }
     }
 
@@ -81,5 +83,4 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
         mTerms = terms;
         notifyDataSetChanged();
     }
-
 }

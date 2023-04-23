@@ -10,7 +10,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="18dp"
-        android:background="@drawable/library_outline"
+        android:background="@drawable/terms_icon"
         app:layout_constraintEnd_toStartOf="@+id/term_item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
