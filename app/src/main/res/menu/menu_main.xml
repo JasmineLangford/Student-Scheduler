@@ -2,8 +2,6 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/modify_term"
-        android:id="@+id/modify_term"/>
-    <item android:title="@string/delete_term"
-        android:id="@+id/delete_term"/>
+    <item android:title="Add Sample Data"
+        android:id="@+id/addSampleData"/>
 </menu>
