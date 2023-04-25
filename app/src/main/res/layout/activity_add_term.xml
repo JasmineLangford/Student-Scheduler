@@ -112,31 +112,48 @@
         </LinearLayout>
     </ScrollView>
 
+    <!--Button
+        android:id="@+id/update_term"
+        android:layout_width="303dp"
+        android:layout_height="64dp"
+        android:backgroundTint="#3700B3"
+        android:text="@string/update_button"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.439" /-->
+
     <Button
         android:id="@+id/save_new_term"
         android:layout_width="303dp"
-        android:layout_height="50dp"
-        android:background="#6200EE"
+        android:layout_height="64dp"
+        android:background="@color/primary_button"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
         android:text="@string/save_button"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintVertical_bias="0.449" />
 
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="303dp"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:backgroundTint="#DBC2E6"
+        android:layout_height="64dp"
+        android:background="@color/secondary_button"
         android:text="@string/cancel_button"
-        android:textColor="#6200EE"
+        android:textColor="@color/primary_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintVertical_bias="0.598" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

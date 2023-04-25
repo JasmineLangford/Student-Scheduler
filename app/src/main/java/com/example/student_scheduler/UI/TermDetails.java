@@ -87,6 +87,10 @@ public class TermDetails extends AppCompatActivity {
             }
         });
 
+        // Cancel and go back to list of terms
+        Button cancel = findViewById(R.id.cancel_button);
+        cancel.setOnClickListener(view -> finish());
+
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 

@@ -123,18 +123,36 @@
         app:rippleColor="@color/white"
         app:tint="@color/white" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/update_term"
-        android:layout_width="222dp"
+        android:layout_width="303dp"
         android:layout_height="64dp"
-        android:backgroundTint="#3700B3"
+        android:backgroundTint="@color/primary_button"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/update_button"
         android:textColor="@color/white"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintVertical_bias="0.449"
+        tools:ignore="RtlSymmetry" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancel_button"
+        android:layout_width="303dp"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/secondary_button"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/cancel_button"
+        android:textColor="@color/primary_button"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.598" />
 </androidx.constraintlayout.widget.ConstraintLayout>
