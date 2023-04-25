@@ -1,6 +1,8 @@
 package com.example.student_scheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -14,9 +16,11 @@ import android.widget.Toast;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
+import com.example.student_scheduler.entities.Course;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -29,12 +33,8 @@ import java.util.Objects;
  */
 public class TermDetails extends AppCompatActivity {
 
-    EditText term_title;
-    EditText term_start;
-    EditText term_end;
-    String title;
-    String startDate;
-    String endDate;
+    EditText term_title, term_start, term_end;
+    String termTitle,termStart,termEnd;
     int termID;
     Term term;
     Repository repository;
@@ -42,22 +42,32 @@ public class TermDetails extends AppCompatActivity {
     // Confirmation Message
     String confirmMessage = "Term was successfully updated.";
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
 
+        // Labels and edit text fields for selected term
         term_title = findViewById(R.id.term_title_edit);
         term_start = findViewById(R.id.term_start_edit);
         term_end = findViewById(R.id.term_end_edit);
-        title = getIntent().getStringExtra("term_title");
-        startDate = getIntent().getStringExtra("term_start");
-        endDate = getIntent().getStringExtra("term_end");
-        term_title.setText(title);
-        term_start.setText(startDate);
-        term_end.setText(endDate);
+        termTitle = getIntent().getStringExtra("term_title");
+        termStart = getIntent().getStringExtra("term_start");
+        termEnd= getIntent().getStringExtra("term_end");
+        term_title.setText(termTitle);
+        term_start.setText(termStart);
+        term_end.setText(termEnd);
         termID = getIntent().getIntExtra("term_id", -1);
         repository = new Repository(getApplication());
+
+        // Display associated courses with the term
+        RecyclerView courseListRecycler = findViewById(R.id.course_list_recycler);
+        repository = new Repository(getApplication());
+        final CourseAdapter courseAdapter = new CourseAdapter(this);
+        courseListRecycler.setAdapter(courseAdapter);
+        courseListRecycler.setLayoutManager(new LinearLayoutManager(this));
+        courseAdapter.setCourses(repository.getAllCourses());
 
         // Updates the data in the database when update button is clicked
         Button updateTerm = findViewById(R.id.update_term);
@@ -87,10 +97,6 @@ public class TermDetails extends AppCompatActivity {
             }
         });
 
-        // Cancel and go back to list of terms
-        Button cancel = findViewById(R.id.cancel_button);
-        cancel.setOnClickListener(view -> finish());
-
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
@@ -114,8 +120,8 @@ public class TermDetails extends AppCompatActivity {
     }
 
     /**
-     * This method is called when the floating action button is clicked. This alert dialog provides
-     * the user two options: 1) adding a new term or 2) viewing courses related to the selected term.
+     * This method is called when the floating action button is clicked. This popup menu provides
+     * the user two options: 1) adding a new term or 2) deleting the term.
      */
     @SuppressLint("NonConstantResourceId")
     public void showSubMenu(View view) {
@@ -126,10 +132,6 @@ public class TermDetails extends AppCompatActivity {
                 case R.id.add_term:
                     Intent toAddTerm = new Intent(TermDetails.this, AddTerm.class);
                     startActivity(toAddTerm);
-                    break;
-                case R.id.view_courses:
-                    Intent toViewCourses = new Intent(TermDetails.this, CourseList.class);
-                    startActivity(toViewCourses);
                     break;
                 case R.id.delete_term:
                     // TODO: add delete functionality

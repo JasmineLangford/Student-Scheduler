@@ -16,12 +16,11 @@ import com.example.student_scheduler.entities.Term;
 import java.util.List;
 
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder> {
-
     class TermListHolder extends RecyclerView.ViewHolder {
         private final TextView termItemView;
 
-        private TermListHolder(@NonNull View itemView) {
-            super(itemView);
+        private TermListHolder(@NonNull View termItem) {
+            super(termItem);
             termItemView = itemView.findViewById(R.id.term_item);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

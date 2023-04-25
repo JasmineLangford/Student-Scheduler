@@ -1,6 +1,5 @@
 package com.example.student_scheduler.UI;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,26 +17,33 @@ import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseListHolder> {
     class CourseListHolder extends RecyclerView.ViewHolder {
-        private final TextView courseItemView;
+        private final TextView courseTitleView;
+        private final TextView courseStartView;
+        private final TextView courseEndView;
 
         private CourseListHolder(View courseItem) {
             super(courseItem);
-            courseItemView = courseItem.findViewById(R.id.course_item);
+            courseTitleView = courseItem.findViewById(R.id.course_title);
+            courseStartView = courseItem.findViewById(R.id.course_start);
+            courseEndView = courseItem.findViewById(R.id.course_end);
+
             courseItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getBindingAdapterPosition();
-                    final Course current = mCourses.get(position);
-                    Intent intent = new Intent(context, CourseDetails.class);
-                    intent.putExtra("course_id", current.getCourseID());
-                    intent.putExtra("course_title", current.getCourseTitle());
-                    intent.putExtra("course_start", current.getCourseStartDate());
-                    intent.putExtra("course_end", current.getCourseEndDate());
-                    intent.putExtra("course_status", current.getCourseStatus());
-                    intent.putExtra("instructor_name", current.getInstructorName());
-                    intent.putExtra("instructor_email", current.getInstructorEmail());
-                    intent.putExtra("instructor_phone", current.getInstructorPhone());
-                    context.startActivity(intent);
+                    if (position != RecyclerView.NO_POSITION) {
+                        final Course current = mCourses.get(position);
+                        Intent intent = new Intent(context, CourseDetails.class);
+                        intent.putExtra("course_id", current.getCourseID());
+                        intent.putExtra("course_title", current.getCourseTitle());
+                        intent.putExtra("course_start", current.getCourseStartDate());
+                        intent.putExtra("course_end", current.getCourseEndDate());
+                        intent.putExtra("course_status", current.getCourseStatus());
+                        intent.putExtra("instructor_name", current.getInstructorName());
+                        intent.putExtra("instructor_email", current.getInstructorEmail());
+                        intent.putExtra("instructor_phone", current.getInstructorPhone());
+                        context.startActivity(intent);
+                    }
                 }
             });
         }
@@ -64,22 +70,27 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
         if (mCourses != null) {
             Course current = mCourses.get(position);
             String title = current.getCourseTitle();
-            holder.courseItemView.setText(title);
-            holder.courseItemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, CourseDetails.class);
-                    context.startActivity(intent);
-                }
-            });
+            String start = current.getCourseStartDate();
+            String end = current.getCourseEndDate();
+            holder.courseTitleView.setText(title);
+            holder.courseStartView.setText(start);
+            holder.courseEndView.setText(end);
+
         } else {
-            holder.courseItemView.setText(R.string.no_courses);
+            holder.courseTitleView.setText("No courses available.");
+            holder.courseStartView.setText("No start date.");
+            holder.courseEndView.setText("No end date.");
         }
     }
 
     @Override
     public int getItemCount() {
+        if(mCourses == null) {
+            return 0;
+        }
+        else {
         return mCourses.size();
+        }
     }
 
     public void setCourses(List<Course> courses) {

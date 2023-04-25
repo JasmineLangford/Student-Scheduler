@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
@@ -53,13 +54,13 @@ public class TermList extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.addSampleData:
-                Term term1 = new Term(0, "Term 1", "01/01/2023",
-                        "06/30/2023");
+                Course course1 = new Course(0,1, "Chemistry", "01/01/2023", "06/30/2023",
+                        "In Progress","Mr. Sunny","652-985-9963","sunny@wgu.edu"," ");
                 Repository repository = new Repository(getApplication());
-                repository.insert(term1);
-                Course course1 = new Course(0, 1, "Chemistry", "01/01/2023", "06/30/2023",
-                        "In Progress", "Mr. Sunny", "456-234-6677", "sunny@wgu.edu", " ");
                 repository.insert(course1);
+                Course course2 = new Course(0, 1, "Anatomy", "01/01/2023", "06/30/2023",
+                        "In Progress", "Mr. Sunny", "456-234-6677", "sunny@wgu.edu", " ");
+                repository.insert(course2);
                 return true;
         }
         return super.onOptionsItemSelected(item);
