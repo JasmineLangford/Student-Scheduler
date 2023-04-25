@@ -20,17 +20,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
     class CourseListHolder extends RecyclerView.ViewHolder {
         private final TextView courseItemView;
 
-        private CourseListHolder(View itemview) {
-            super(itemview);
-            courseItemView = itemview.findViewById(R.id.course_item);
-            itemview.setOnClickListener(new View.OnClickListener() {
+        private CourseListHolder(View courseItem) {
+            super(courseItem);
+            courseItemView = courseItem.findViewById(R.id.course_item);
+            courseItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getBindingAdapterPosition();
                     final Course current = mCourses.get(position);
                     Intent intent = new Intent(context, CourseDetails.class);
                     intent.putExtra("course_id", current.getCourseID());
-                    intent.putExtra("term_id", current.getTermID());
                     intent.putExtra("course_title", current.getCourseTitle());
                     intent.putExtra("course_start", current.getCourseStartDate());
                     intent.putExtra("course_end", current.getCourseEndDate());
@@ -38,6 +37,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
                     intent.putExtra("instructor_name", current.getInstructorName());
                     intent.putExtra("instructor_email", current.getInstructorEmail());
                     intent.putExtra("instructor_phone", current.getInstructorPhone());
+                    context.startActivity(intent);
                 }
             });
         }
@@ -59,7 +59,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
         return new CourseListHolder((itemView));
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CourseAdapter.CourseListHolder holder, int position) {
         if (mCourses != null) {
@@ -74,7 +73,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
                 }
             });
         } else {
-            holder.courseItemView.setText("No Available Courses.");
+            holder.courseItemView.setText(R.string.no_courses);
         }
     }
 

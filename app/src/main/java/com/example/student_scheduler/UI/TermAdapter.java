@@ -1,6 +1,5 @@
 package com.example.student_scheduler.UI;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -28,12 +27,15 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
                 @Override
                 public void onClick(View view) {
                     int position = getBindingAdapterPosition();
-                    final Term current = mTerms.get(position);
-                    Intent intent = new Intent(context, TermDetails.class);
-                    intent.putExtra("term_id", current.getTermID());
-                    intent.putExtra("term_title", current.getTermTitle());
-                    intent.putExtra("term_start", current.getTermStartDate());
-                    intent.putExtra("term_end", current.getTermEndDate());
+                    if (position != RecyclerView.NO_POSITION) {
+                        final Term current = mTerms.get(position);
+                        Intent intent = new Intent(context, TermDetails.class);
+                        intent.putExtra("term_id", current.getTermID());
+                        intent.putExtra("term_title", current.getTermTitle());
+                        intent.putExtra("term_start", current.getTermStartDate());
+                        intent.putExtra("term_end", current.getTermEndDate());
+                        context.startActivity(intent);
+                    }
                 }
             });
         }
@@ -55,22 +57,14 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
         return new TermListHolder((itemView));
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermListHolder holder, int position) {
         if (mTerms != null) {
             Term current = mTerms.get(position);
             String termTitle = current.getTermTitle();
             holder.termItemView.setText(termTitle);
-            holder.termItemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, TermDetails.class);
-                    context.startActivity(intent);
-                }
-            });
         } else {
-            holder.termItemView.setText("No available terms.");
+            holder.termItemView.setText(R.string.no_terms_available);
         }
     }
 
