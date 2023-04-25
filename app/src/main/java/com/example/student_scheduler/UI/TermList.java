@@ -41,13 +41,6 @@ public class TermList extends AppCompatActivity {
 
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
-
-        // FAB navigates to add new term
-        FloatingActionButton termFAB = findViewById(R.id.FAB_add_term);
-        termFAB.setOnClickListener(view -> {
-            Intent intent = new Intent(TermList.this, AddTerm.class);
-            startActivity(intent);
-        });
     }
 
     // TODO: Delete this boolean
