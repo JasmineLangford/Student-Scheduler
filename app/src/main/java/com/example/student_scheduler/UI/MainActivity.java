@@ -26,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button getStarted = findViewById(R.id.view_term);
-//        Term term2 = new Term(0, "Term 2", "07/01/2023", "12/30/2023");
-//        Repository repository = new Repository(getApplication());
-//        repository.insert(term2);
-
         getStarted.setOnClickListener(view -> {
             Intent generateTerms = new Intent(MainActivity.this, TermList.class);
             startActivity(generateTerms);
@@ -38,14 +34,5 @@ public class MainActivity extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
     }
 }
-
-
-
-//        // View terms on next screen
-//        Button getStartedButton = findViewById(R.id.view_term);
-//        getStartedButton.setOnClickListener(view -> {
-//            Intent intent = new Intent(MainActivity.this, TermList.class);
-//            startActivity(intent);
-//        });
 
 
