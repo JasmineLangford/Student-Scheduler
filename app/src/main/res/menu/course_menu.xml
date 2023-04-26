@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="View Assessment Details"
+        android:id="@+id/view_assessments"/>
+    <item android:title="@string/add_new_course"
+        android:id="@+id/add_course"/>
+    <item android:title="@string/delete_term"
+        android:id="@+id/delete_course"/>
+</menu>

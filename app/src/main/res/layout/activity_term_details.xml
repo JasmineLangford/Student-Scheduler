@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -36,7 +36,8 @@
                     android:layout_height="48dp"
                     android:text="@string/term_title_label"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/term_title_edit"
@@ -62,7 +63,8 @@
                     android:layout_height="48dp"
                     android:text="@string/term_start_date"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/term_start_edit"
@@ -88,7 +90,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/term_end_date"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/term_end_edit"
@@ -109,14 +112,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="320dp"
+        android:layout_marginStart="25dp"
         android:gravity="bottom"
-        android:text="@string/courses"
-        android:textColor="@color/black"
+        android:text="@string/select_course"
+        android:textColor="#D13DDC"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/scrollView1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -156,6 +159,10 @@
         android:id="@+id/course_list_recycler"
         android:layout_width="390dp"
         android:layout_height="220dp"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:focusable="auto"
+        android:longClickable="false"
         android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
