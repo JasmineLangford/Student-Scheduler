@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".UI.AddCourse">
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="925dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:verticalScrollbarPosition="right"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/course_title"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:autofillHints=""
                     android:hint="@string/enter_title"
                     android:inputType="text"
@@ -112,6 +112,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -135,11 +136,28 @@
                     android:textColor="@color/black"
                     android:textColorHint="#757575"
                     android:textSize="16sp" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/instructor_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Course Instructor"
+                    android:textColor="#D13DDC"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <TextView
@@ -147,6 +165,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:gravity="bottom"
                     android:text="@string/instructor_name"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -163,6 +182,8 @@
                     android:textColor="@color/black"
                     android:textColorHint="#757575"
                     android:textSize="16sp" />
+
+
             </LinearLayout>
 
             <LinearLayout
@@ -195,7 +216,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="58dp"
+                android:layout_marginBottom="0dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -213,6 +235,7 @@
                     android:layout_height="48dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="35dp"
                     android:autofillHints=""
                     android:hint="@string/enter_email"
                     android:inputType="textEmailAddress"
@@ -224,30 +247,32 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/save_new_course"
+        android:id="@+id/save_new_term"
         android:layout_width="303dp"
-        android:layout_height="50dp"
-        android:background="#6200EE"
+        android:layout_height="64dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/primary_button"
+        android:insetLeft="0dp"
+        android:insetTop="0dp"
+        android:insetRight="0dp"
+        android:insetBottom="0dp"
         android:text="@string/save_button"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="303dp"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:backgroundTint="#DBC2E6"
+        android:layout_height="64dp"
+        android:background="@color/secondary_button"
         android:text="@string/cancel_button"
-        android:textColor="#6200EE"
+        android:textColor="@color/primary_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

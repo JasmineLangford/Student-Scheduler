@@ -47,11 +47,10 @@
     <string name="enter_title">Enter Title</string>
     <string name="term_options">Term Options</string>
     <string name="calendar_schedule">calendar schedule</string>
-    <string name="view_course_item">View Course Item</string>
     <string name="clipboard">clipboard</string>
     <string name="view_assessment_item">View Assessment Item</string>
     <string name="no_assessments">No available assessments.</string>
-    <string name="no_courses">No Available Courses.</string>
+    <string name="no_courses">There are no courses for this term. Please add a new course.</string>
     <string name="no_terms_available">No available terms.</string>
     <string name="course_title">Course Title</string>
     <string name="start_date">Start Date</string>
@@ -68,5 +67,10 @@
     <string name="add_term_submenu">Sub menu to add a new term</string>
     <string name="sub_menu_view_courses">Sub menu to view courses</string>
     <string name="sub_menu_delete_term">Sub menu to delete term</string>
+    <string name="course_title_item">Course Title Item</string>
+    <string name="course_start_item">Course Start Item</string>
+    <string name="course_end_item">Course End Item</string>
+    <string name="start">Start</string>
+    <string name="select_course">Select Course</string>
 
 </resources>
