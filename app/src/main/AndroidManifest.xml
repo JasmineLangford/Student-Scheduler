@@ -27,8 +27,7 @@
             android:exported="false"
             android:label="Add New Course"
             android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:windowSoftInputMode="adjustPan" >
+            android:theme="@style/Theme.AppCompat">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
