@@ -25,8 +25,8 @@ public class CourseDetails extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // Extended FAB with sub menu
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ExtendedFloatingActionButton courseFab = findViewById(R.id.courses_extended_fab);
-        courseFab.setOnClickListener(this::showSubMenu);
+//        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ExtendedFloatingActionButton courseFab = findViewById(R.id.courses_extended_fab);
+//        courseFab.setOnClickListener(this::showSubMenu);
     }
 
     /**
