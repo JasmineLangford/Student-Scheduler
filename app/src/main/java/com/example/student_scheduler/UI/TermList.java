@@ -23,9 +23,12 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This activity provides the user with a list of available terms displayed in a recyclerview,
+ * This activity provides the user with a list of available terms displayed in a RecyclerView,
  * which pulls data from the database. Upon selection of a term, details for that term will be
  * populated on the next screen.
+ * <p>
+ * There is also a floating action button located at the bottom right for the user to add a new
+ * term.
  */
 public class TermList extends AppCompatActivity {
 
@@ -69,7 +72,7 @@ public class TermList extends AppCompatActivity {
 
     /**
      * This method is called when the floating action button is clicked. This popup menu provides
-     * the user two options: 1) adding a new term or 2) deleting the term.
+     * the user the option of adding a new term.
      */
     @SuppressLint("NonConstantResourceId")
     public void showSubMenu(View view) {
