@@ -75,8 +75,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
 
         } else {
             holder.courseTitleView.setText("No courses available.");
-            holder.courseStartView.setText("No start date.");
-            holder.courseEndView.setText("No end date.");
         }
     }
 
