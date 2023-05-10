@@ -3,12 +3,10 @@ package com.example.student_scheduler.UI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
