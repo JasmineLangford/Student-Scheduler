@@ -8,7 +8,7 @@
     tools:context=".UI.TermDetails">
 
     <ScrollView
-        android:id="@+id/scrollView1"
+        android:id="@+id/scrollViewTerm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
@@ -61,7 +61,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:text="@string/term_start_date"
+                    android:text="@string/start_date"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -88,7 +88,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/term_end_date"
+                    android:text="@string/end_date"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -112,14 +112,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="16dp"
         android:gravity="bottom"
         android:text="@string/select_course"
         android:textColor="#D13DDC"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/scrollView1"
+        app:layout_constraintStart_toStartOf="@+id/scrollViewTerm"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

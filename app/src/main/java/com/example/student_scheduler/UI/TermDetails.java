@@ -72,7 +72,7 @@ public class TermDetails extends AppCompatActivity {
         courseAdapter.setCourses(repository.getAllCourses());
 
 
-        // Updates the data in the database when update button is clicked
+        // Update selected term and confirm update
         Button updateTerm = findViewById(R.id.update_term);
         updateTerm.setOnClickListener(view -> {
             if (termID == -1) {
@@ -80,23 +80,16 @@ public class TermDetails extends AppCompatActivity {
                         term_start.getText().toString(), term_end.getText().toString());
                 repository.update(term);
 
-                // Message to confirm add
                 Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
-
-                // Back to screen with list of terms
-                Intent intent = new Intent(this, TermList.class);
-                startActivity(intent);
+                finish();
             } else {
                 term = new Term(termID, term_title.getText().toString(),
                         term_start.getText().toString(), term_end.getText().toString());
                 repository.update(term);
 
-                // Message to confirm update
-                Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
 
-                // Back to screen with list of terms
-                Intent intent = new Intent(this, TermList.class);
-                startActivity(intent);
+                Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
@@ -132,6 +125,10 @@ public class TermDetails extends AppCompatActivity {
         termPopupMenu.getMenuInflater().inflate(R.menu.term_menu, termPopupMenu.getMenu());
         termPopupMenu.setOnMenuItemClickListener(menuItem -> {
             switch (menuItem.getItemId()) {
+                case R.id.add_course:
+                    Intent toAddCourse = new Intent(TermDetails.this, AddCourse.class);
+                    startActivity(toAddCourse);
+                    break;
                 case R.id.add_term:
                     Intent toAddTerm = new Intent(TermDetails.this, AddTerm.class);
                     startActivity(toAddTerm);
