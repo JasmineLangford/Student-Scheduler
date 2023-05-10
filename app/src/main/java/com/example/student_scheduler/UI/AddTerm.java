@@ -65,12 +65,8 @@ public class AddTerm extends AppCompatActivity {
                         editTermStart.getText().toString(), editTermEnd.getText().toString());
                 repository.insert(term);
 
-                // Message to confirm add
                 Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
-
-                // Back to screen with list of terms
-                Intent intent = new Intent(this, TermList.class);
-                startActivity(intent);
+                finish();
             }
         });
         // Display toolbar
