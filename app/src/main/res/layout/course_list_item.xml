@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="236dp"
         android:layout_marginTop="52dp"
-        android:text="End"
+        android:text="@string/end"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:textStyle="bold"
