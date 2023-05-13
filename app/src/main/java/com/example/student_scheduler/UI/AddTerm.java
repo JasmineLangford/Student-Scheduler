@@ -2,7 +2,6 @@ package com.example.student_scheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -17,17 +16,19 @@ import java.util.Objects;
 
 
 /**
- * This activity allows the user to add a new term to the database and displays the new term on the
- * screen with the listed terms once the Save button is clicked.
+ * This activity allows the user to add a new term to the Room database and displays the new term
+ * on the screen with the listed terms once the Save button is clicked.
  */
 public class AddTerm extends AppCompatActivity {
 
     EditText editTermTitle;
     EditText editTermStart;
     EditText editTermEnd;
+
     String termTitleEdit;
     String termStartEdit;
     String termEndEdit;
+
     int termID;
     Term term;
     Repository repository;
@@ -44,9 +45,11 @@ public class AddTerm extends AppCompatActivity {
         editTermTitle = findViewById(R.id.term_title_edit);
         editTermStart = findViewById(R.id.term_start_edit);
         editTermEnd = findViewById(R.id.term_end_edit);
+
         termTitleEdit = getIntent().getStringExtra("term_title");
         termStartEdit = getIntent().getStringExtra("term_start");
         termEndEdit = getIntent().getStringExtra("term_end");
+
         editTermTitle.setText(termTitleEdit);
         editTermStart.setText(termStartEdit);
         editTermEnd.setText(termEndEdit);
