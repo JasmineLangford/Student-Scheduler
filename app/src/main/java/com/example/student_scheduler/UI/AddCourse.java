@@ -46,7 +46,6 @@ public class AddCourse extends AppCompatActivity {
     // Confirmation Message
     String confirmMessage = "New course was successfully added.";
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
