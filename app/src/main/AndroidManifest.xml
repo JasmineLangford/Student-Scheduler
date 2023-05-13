@@ -27,7 +27,8 @@
             android:exported="false"
             android:label="Add New Course"
             android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat">
+            android:theme="@style/Theme.AppCompat"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -48,19 +49,8 @@
             android:exported="false"
             android:label="Assessment Details"
             android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:windowSoftInputMode="adjustPan" >
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".UI.AssessmentList"
-            android:exported="false"
-            android:label="Select Assessment"
-            android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:windowSoftInputMode="adjustPan" >
+            android:theme="@style/Theme.MaterialComponents"
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
