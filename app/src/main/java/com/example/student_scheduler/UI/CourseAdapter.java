@@ -1,5 +1,6 @@
 package com.example.student_scheduler.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -74,7 +75,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
             holder.courseEndView.setText(end);
 
         } else {
-            holder.courseTitleView.setText("No courses available.");
+            holder.courseTitleView.setText(R.string.no_courses);
         }
     }
 
@@ -88,6 +89,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setCourses(List<Course> courses) {
         mCourses = courses;
         notifyDataSetChanged();
