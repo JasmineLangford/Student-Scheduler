@@ -25,14 +25,18 @@ import java.util.Objects;
  * This activity allows the user to view details for a selected term. The data is populated into
  * EditText fields for the user to modify or delete. If there are associated courses with this term,
  * the user will not be allowed to delete the term until all courses have been deleted.
- * <p>
+ *
  * The user can also use the floating action button in the bottom right-hand corner to view
  * additional options related to the term.
  */
 public class TermDetails extends AppCompatActivity {
 
-    EditText term_title, term_start, term_end;
-    String termTitle,termStart,termEnd;
+    EditText term_title;
+    EditText term_start;
+    EditText term_end;
+    String termTitle;
+    String termStart;
+    String termEnd;
     int termID;
     Term term;
     Repository repository;
@@ -70,7 +74,6 @@ public class TermDetails extends AppCompatActivity {
         courseListRecycler.setAdapter(courseAdapter);
         courseListRecycler.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.setCourses(repository.getAllCourses());
-
 
         // Update selected term and confirm update
         Button updateTerm = findViewById(R.id.update_term);
