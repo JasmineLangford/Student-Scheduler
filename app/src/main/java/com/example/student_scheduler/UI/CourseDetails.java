@@ -9,9 +9,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
@@ -31,18 +34,15 @@ public class CourseDetails extends AppCompatActivity {
     EditText course_title;
     EditText course_start;
     EditText course_end;
-    EditText course_status;
     EditText instructor_name;
     EditText instructor_phone;
     EditText instructor_email;
     String courseTitle;
     String courseStart;
     String courseEnd;
-    String courseStatus;
     String instructorName;
     String instructorPhone;
     String instructorEmail;
-
     int courseID;
     Course course;
     Repository repository;
@@ -71,11 +71,6 @@ public class CourseDetails extends AppCompatActivity {
         course_end.setText(courseEnd);
         course_end.requestFocus();
 
-        course_status = findViewById(R.id.course_status_edit);
-        courseStatus = getIntent().getStringExtra("course_status");
-        course_status.setText(courseStatus);
-        course_status.requestFocus();
-
         instructor_name = findViewById(R.id.instructor_name_edit);
         instructorName = getIntent().getStringExtra("instructor_name");
         instructor_name.setText(instructorName);
@@ -102,17 +97,30 @@ public class CourseDetails extends AppCompatActivity {
         assessmentListRecycler.setLayoutManager(new LinearLayoutManager(this));
         assessmentAdapter.setAssessments(repository.getAllAssessments());
 
-        // Update select course and confirm update
-        Button updateCourse = findViewById(R.id.update_course);
-        updateCourse.setOnClickListener(view -> {
-            if (courseID == -1) {
-                course = new Course(0,0,course_title.getText().toString(),
-                        course_start.getText().toString(),course_end.getText().toString(),
-                        course_status.getText().toString(),instructor_name.getText().toString(),
-                        instructor_phone.getText().toString(),instructor_email.getText().toString());
-            }
+        // Dropdown selection for course status
+        Spinner courseStatusSpinner = findViewById(R.id.course_status_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>
+                (this, android.R.layout.simple_spinner_item, new String[]{"In Progress",
+                        "Completed","Dropped","Plan to Take"});
+        courseStatusSpinner.setAdapter(adapter);
+        courseStatusSpinner.setPrompt("Select Status");
 
-        });
+        String courseStatus = String.valueOf(getIntent().getStringArrayListExtra("course_status"));
+        int position = adapter.getPosition(courseStatus);
+        courseStatusSpinner.setSelection(position);
+        courseStatusSpinner.requestFocus();
+
+        // Update select course and confirm update
+//        Button updateCourse = findViewById(R.id.update_course);
+//        updateCourse.setOnClickListener(view -> {
+//            if (courseID == -1) {
+//                course = new Course(0,0,course_title.getText().toString(),
+//                        course_start.getText().toString(),course_end.getText().toString(),
+//                        course_status.getText().toString(),instructor_name.getText().toString(),
+//                        instructor_phone.getText().toString(),instructor_email.getText().toString,;
+//            }
+//
+//        });
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
@@ -120,6 +128,7 @@ public class CourseDetails extends AppCompatActivity {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ExtendedFloatingActionButton courseFab = findViewById(R.id.courses_extended_fab);
         courseFab.setOnClickListener(this::showSubMenu);
     }
+
 
     /**
      * This method handles the click event for the back button in the action bar. When the back
