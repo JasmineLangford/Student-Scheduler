@@ -8,14 +8,22 @@
     tools:context=".UI.AssessmentDetails">
 
     <ScrollView
+        android:id="@+id/scrollViewAssessment"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -23,22 +31,53 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hi!"
-                    android:textColor="@color/black" />
+                    android:layout_height="48dp"
+                    android:text="@string/assessment_title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/term_title_edit"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hi!"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Hi!"
-                    android:textColor="@color/black" />
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:hint="@string/enter_title"
+                    android:inputType="text"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="16sp" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="@string/assessment_type"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/term_start_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:hint="@string/enter_type"
+                    android:inputType="date"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,36 +86,57 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Low!"
-                    android:textColor="@color/black" />
+                    android:text="@string/end_date"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-                <TextView
+                <EditText
+                    android:id="@+id/term_end_edit"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Low!"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Low!"
-                    android:textColor="@color/black" />
+                    android:layout_height="48dp"
+                    android:autofillHints=""
+                    android:hint="@string/enter_end_date"
+                    android:inputType="date"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/hint_text"
+                    android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/FAB_add_assessment"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/assessment_extended_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:clickable="true"
-        android:contentDescription="@string/add_new_assessment"
+        android:text="@string/actions"
+        android:textColor="@color/white"
         app:backgroundTint="#D13DDC"
+        app:icon="@android:drawable/ic_input_add"
+        app:iconTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add"
-        app:tint="@android:color/white" />
+        app:rippleColor="@color/white"
+        app:tint="@color/white" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/update_assessment"
+        android:layout_width="303dp"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/primary_button"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/update_button"
+        android:textColor="@color/white"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.358"
+        tools:ignore="RtlSymmetry" />
 </androidx.constraintlayout.widget.ConstraintLayout>
