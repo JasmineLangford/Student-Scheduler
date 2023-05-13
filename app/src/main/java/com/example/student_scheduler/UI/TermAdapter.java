@@ -1,5 +1,6 @@
 package com.example.student_scheduler.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -22,19 +23,16 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
         private TermListHolder(@NonNull View termItem) {
             super(termItem);
             termItemView = itemView.findViewById(R.id.term_item);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getBindingAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        final Term current = mTerms.get(position);
-                        Intent intent = new Intent(context, TermDetails.class);
-                        intent.putExtra("term_id", current.getTermID());
-                        intent.putExtra("term_title", current.getTermTitle());
-                        intent.putExtra("term_start", current.getTermStartDate());
-                        intent.putExtra("term_end", current.getTermEndDate());
-                        context.startActivity(intent);
-                    }
+            itemView.setOnClickListener(view -> {
+                int position = getBindingAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    final Term current = mTerms.get(position);
+                    Intent intent = new Intent(context, TermDetails.class);
+                    intent.putExtra("term_id", current.getTermID());
+                    intent.putExtra("term_title", current.getTermTitle());
+                    intent.putExtra("term_start", current.getTermStartDate());
+                    intent.putExtra("term_end", current.getTermEndDate());
+                    context.startActivity(intent);
                 }
             });
         }
@@ -73,6 +71,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
         return mTerms.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setTerms(List<Term> terms) {
         mTerms = terms;
         notifyDataSetChanged();

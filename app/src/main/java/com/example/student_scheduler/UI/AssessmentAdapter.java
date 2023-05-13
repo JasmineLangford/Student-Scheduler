@@ -1,5 +1,6 @@
 package com.example.student_scheduler.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -17,23 +18,23 @@ import java.util.List;
 
 public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.AssessmentViewHolder> {
     class AssessmentViewHolder extends RecyclerView.ViewHolder {
-        private final TextView assessmentItemView;
+        private final TextView assessmentTitleView;
+        private final TextView assessmentTypeView;
 
-        private AssessmentViewHolder(View assessementItem) {
-            super(assessementItem);
-            assessmentItemView = assessementItem.findViewById(R.id.assessment_item);
-            assessementItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    int position = getBindingAdapterPosition();
-                    final Assessment current = mAssessments.get(position);
-                    Intent intent = new Intent(context, AssessmentDetails.class);
-                    intent.putExtra("assessment_id",current.getAssessmentID());
-                    intent.putExtra("assessment_title",current.getAssessmentTitle());
-                    intent.putExtra("assessment_type",current.getAssessmentType());
-                    intent.putExtra("assessment_end",current.getAssessmentEndDate());
-                    context.startActivity(intent);
-                }
+        private AssessmentViewHolder(View assessmentItem) {
+            super(assessmentItem);
+            assessmentTitleView = assessmentItem.findViewById(R.id.assessment_title);
+            assessmentTypeView = assessmentItem.findViewById(R.id.assessment_type);
+
+            assessmentItem.setOnClickListener(view -> {
+                int position = getBindingAdapterPosition();
+                final Assessment current = mAssessments.get(position);
+                Intent intent = new Intent(context, AssessmentDetails.class);
+                intent.putExtra("assessment_id",current.getAssessmentID());
+                intent.putExtra("assessment_title",current.getAssessmentTitle());
+                intent.putExtra("assessment_type",current.getAssessmentType());
+                intent.putExtra("assessment_end",current.getAssessmentEndDate());
+                context.startActivity(intent);
             });
         }
     }
@@ -54,23 +55,33 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         return new AssessmentViewHolder((itemView));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AssessmentViewHolder holder, int position) {
         if(mAssessments != null) {
             Assessment current = mAssessments.get(position);
-            String assessment_title = current.getAssessmentTitle();
-            holder.assessmentItemView.setText(assessment_title);
+            String assessmentTitle = current.getAssessmentTitle();
+            String assessmentType = current.getAssessmentType();
+            holder.assessmentTitleView.setText(assessmentTitle);
+            holder.assessmentTypeView.setText(assessmentType);
         }
         else{
-            holder.assessmentItemView.setText(R.string.no_assessments);
+            holder.assessmentTitleView.setText("There are no available assessments for this course. " +
+                    "Please add an assessment.");
         }
     }
 
     @Override
     public int getItemCount() {
-        return mAssessments.size();
+        if(mAssessments == null) {
+            return 0;
+        }
+        else {
+            return mAssessments.size();
+        }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setAssessments(List<Assessment> assessments) {
         mAssessments = assessments;
         notifyDataSetChanged();
