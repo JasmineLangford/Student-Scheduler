@@ -21,7 +21,7 @@ public class Term {
         this.termEndDate = termEndDate;
     }
 
-    public Term(){
+    public Term() {
 
     }
 
