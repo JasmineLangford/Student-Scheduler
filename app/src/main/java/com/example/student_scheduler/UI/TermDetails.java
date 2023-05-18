@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
+import com.example.student_scheduler.entities.Course;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -39,6 +40,7 @@ public class TermDetails extends AppCompatActivity {
     String termEnd;
     int termID;
     Term term;
+    CourseAdapter courseAdapter;
     Repository repository;
 
     // Confirmation Message
@@ -52,55 +54,45 @@ public class TermDetails extends AppCompatActivity {
 
         // Labels and edit text fields for selected term
         term_title = findViewById(R.id.term_title_edit);
-        termTitle = getIntent().getStringExtra("term_title");
-        term_title.setText(termTitle);
-        term_title.requestFocus();
-
         term_start = findViewById(R.id.term_start_edit);
-        termStart = getIntent().getStringExtra("term_start");
-        term_start.setText(termStart);
-
         term_end = findViewById(R.id.term_end_edit);
+
+        termTitle = getIntent().getStringExtra("term_title");
+        termStart = getIntent().getStringExtra("term_start");
         termEnd= getIntent().getStringExtra("term_end");
+
+        term_title.setText(termTitle);
+        term_start.setText(termStart);
         term_end.setText(termEnd);
 
+        term_title.requestFocus();
+
         termID = getIntent().getIntExtra("term_id", -1);
-        repository = new Repository(getApplication());
 
         // Display associated courses with the term
         RecyclerView courseListRecycler = findViewById(R.id.course_list_recycler);
         repository = new Repository(getApplication());
-        final CourseAdapter courseAdapter= new CourseAdapter(this);
+        courseAdapter = new CourseAdapter(this);
         courseListRecycler.setAdapter(courseAdapter);
         courseListRecycler.setLayoutManager(new LinearLayoutManager(this));
-        courseAdapter.setCourses(repository.getAllCourses());
+        courseAdapter.setCourses(repository.getAssociatedCourses(termID));
 
         // Update selected term and confirm update
         Button updateTerm = findViewById(R.id.update_term);
         updateTerm.setOnClickListener(view -> {
-            if (termID == -1) {
-                term = new Term(0, term_title.getText().toString(),
-                        term_start.getText().toString(), term_end.getText().toString());
-                repository.update(term);
-
-                Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
                 term = new Term(termID, term_title.getText().toString(),
                         term_start.getText().toString(), term_end.getText().toString());
                 repository.update(term);
 
-
                 Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
                 finish();
-            }
         });
 
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // Extended FAB with sub menu
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ExtendedFloatingActionButton termFab = findViewById(R.id.terms_extended_fab);
+        ExtendedFloatingActionButton termFab = findViewById(R.id.terms_extended_fab);
         termFab.setOnClickListener(this::showSubMenu);
     }
 
@@ -109,20 +101,17 @@ public class TermDetails extends AppCompatActivity {
      * button is clicked, `onBackPressed()` is called to go back to the previous activity.
      */
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
      * This method is called when the floating action button is clicked. This popup menu provides
      * the user two options: 1) adding a new term or 2) deleting the term.
      */
-    @SuppressLint("NonConstantResourceId")
     public void showSubMenu(View view) {
         PopupMenu termPopupMenu = new PopupMenu(this, view);
         termPopupMenu.getMenuInflater().inflate(R.menu.term_menu, termPopupMenu.getMenu());
@@ -137,11 +126,28 @@ public class TermDetails extends AppCompatActivity {
                     startActivity(toAddTerm);
                     break;
                 case R.id.delete_term:
-                    // TODO: add delete functionality
-                    return true;
+                    if (courseAdapter.getItemCount() > 0 ){
+                        Toast.makeText(TermDetails.this, "Please delete associated " +
+                                "courses before deleting this term.",Toast.LENGTH_SHORT).show();
+                    } else {
+                        deleteTerm();
+                    }
+                    break;
             }
-            return false;
+            return true;
         });
         termPopupMenu.show();
     }
+
+    /**
+     * This method will delete the term.
+     */
+    private void deleteTerm() {
+        Term term = new Term(termID, term_title.getText().toString(),
+                term_start.getText().toString(), term_end.getText().toString());
+        repository.delete(term);
+        Toast.makeText(this, "Term deleted", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
 }

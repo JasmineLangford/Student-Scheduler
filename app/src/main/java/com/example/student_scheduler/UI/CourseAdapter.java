@@ -1,6 +1,5 @@
 package com.example.student_scheduler.UI;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -37,10 +36,11 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
                     intent.putExtra("course_title", current.getCourseTitle());
                     intent.putExtra("course_start", current.getCourseStartDate());
                     intent.putExtra("course_end", current.getCourseEndDate());
-                    intent.putExtra("course_status", current.getCourseStatus());
-                    intent.putExtra("instructor_name", current.getInstructorName());
-                    intent.putExtra("instructor_email", current.getInstructorEmail());
-                    intent.putExtra("instructor_phone", current.getInstructorPhone());
+//                    intent.putExtra("course_status", current.getCourseStatus());
+//                    intent.putExtra("instructor_name", current.getInstructorName());
+//                    intent.putExtra("instructor_email", current.getInstructorEmail());
+//                    intent.putExtra("instructor_phone", current.getInstructorPhone());
+//                    intent.putExtra("course_notes",current.getCourseNote());
                     context.startActivity(intent);
                 }
             });
@@ -70,12 +70,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
             String title = current.getCourseTitle();
             String start = current.getCourseStartDate();
             String end = current.getCourseEndDate();
+
             holder.courseTitleView.setText(title);
             holder.courseStartView.setText(start);
             holder.courseEndView.setText(end);
 
         } else {
             holder.courseTitleView.setText(R.string.no_courses);
+            holder.courseStartView.setText(R.string.no_date);
+            holder.courseEndView.setText(R.string.no_date);
         }
     }
 
@@ -85,13 +88,13 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
             return 0;
         }
         else {
-        return mCourses.size();
+            return mCourses.size();
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     public void setCourses(List<Course> courses) {
         mCourses = courses;
         notifyDataSetChanged();
     }
+
 }
