@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 /**
- * This class represrents the courses table in the database.
+ * This class represents the courses table in the database.
  */
 @Entity(tableName="courses")
 public class Course {
