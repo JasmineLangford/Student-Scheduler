@@ -56,13 +56,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder
 
     @Override
     public void onBindViewHolder(@NonNull TermAdapter.TermListHolder holder, int position) {
-        if (mTerms != null) {
+        if (mTerms != null && !mTerms.isEmpty()) {
             Term current = mTerms.get(position);
             String termTitle = current.getTermTitle();
             holder.termItemView.setText(termTitle);
         } else {
-            holder.termItemView.setText(R.string.no_terms_available);
-
+            holder.termItemView.setText(R.string.term_placeholder);
         }
     }
 
