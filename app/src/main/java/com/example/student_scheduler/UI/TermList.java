@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
-import com.example.student_scheduler.entities.Assessment;
-import com.example.student_scheduler.entities.Course;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -50,7 +46,7 @@ public class TermList extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         // Extended FAB with sub menu
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) ExtendedFloatingActionButton termFab = findViewById(R.id.terms_extended_fab);
+        ExtendedFloatingActionButton termFab = findViewById(R.id.terms_extended_fab);
         termFab.setOnClickListener(this::showSubMenu);
     }
 
@@ -61,6 +57,8 @@ public class TermList extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Display current terms
         RecyclerView termListRecycler = findViewById(R.id.term_list_recycler);
         final TermAdapter termAdapter = new TermAdapter(this);
         termListRecycler.setAdapter(termAdapter);
@@ -68,13 +66,19 @@ public class TermList extends AppCompatActivity {
         Repository repository = new Repository(getApplication());
         List<Term> allTerms = repository.getAllTerms();
         termAdapter.setTerms(allTerms);
+
+        // Display if there are no terms
+        if(termListRecycler.getAdapter() != null &&
+                termListRecycler.getAdapter().getItemCount() == 0){
+            Toast.makeText(this,"No terms. Please add a term.",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
      * This method is called when the floating action button is clicked. This popup menu provides
      * the user the option of adding a new term.
      */
-    @SuppressLint("NonConstantResourceId")
     public void showSubMenu(View view) {
         PopupMenu termPopupMenu = new PopupMenu(this, view);
         termPopupMenu.getMenuInflater().inflate(R.menu.term_add, termPopupMenu.getMenu());
@@ -87,37 +91,5 @@ public class TermList extends AppCompatActivity {
             return false;
         });
         termPopupMenu.show();
-    }
-
-    // TODO: Delete this boolean
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    // TODO: Delete this boolean
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.addSampleData) {
-            Repository repository = new Repository(getApplication());
-
-            Term sampleTerm1 = new Term(0, "Term 1", "01/01/2023", "06/29/2023");
-            repository.insert(sampleTerm1);
-            Term sampleTerm2 = new Term(0, "Term 2", "07/01/2023", "12/29/2023");
-            repository.insert(sampleTerm2);
-
-            Course sampleCourse1 = new Course(0, 1, "Chemistry", "01/01/2023", "06/30/2023",
-                    "In Progress", "Mr. Sunny", "652-985-9963", "sunny@wgu.edu", " ");
-            repository.insert(sampleCourse1);
-            Course sampleCourse2 = new Course(0, 1, "Anatomy", "01/01/2023", "06/30/2023",
-                    "In Progress", "Mr. Sunny", "456-234-6677", "sunny@wgu.edu", " ");
-            repository.insert(sampleCourse2);
-
-            Assessment sampleAssessment1 = new Assessment(0, 2, "Performance Assessment", "Task 1", "03/29/2023");
-            repository.insert(sampleAssessment1);
-            Assessment sampleAssessment2 = new Assessment(0, 2, "Performance Assessment", "Task 2", "06/29/2023");
-            repository.insert(sampleAssessment2);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
