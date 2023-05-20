@@ -1,4 +1,16 @@
 <resources>
+
+    <!-- ToDo: Clean up string resources -->
+
+    <!-- Course Status Spinner -->
+    <string name="course_status_selection">Course Status</string>
+    <string-array name="status">
+        <item>Select an option</item>
+        <item>In progress</item>
+        <item>Completed</item>
+        <item>Dropped</item>
+        <item>Plan to take</item>
+    </string-array>
     <!-- MainActivity UI -->
     <string name="first_intro">Stay organized and on top of your studies with ease.</string>
     <string name="second_intro">Input your class schedule, add deadlines and course notes, and set alerts to stay on track.</string>
@@ -8,34 +20,30 @@
     <string name="view_terms">View Terms</string>
     <string name="view_courses">View Courses</string>
     <string name="view_assessments">View Assessments</string>
-    <!-- TermList UI -->
-    <string name="no_terms">There are no terms on your schedule. Please add a new term.</string>
-    <!-- TermDetails UI -->
-    <string name="enter_term_title">Enter Term Title</string>
-    <string name="term_start_date">Term Start Date</string>
-    <string name="term_end_date">Term End Date</string>
-    <string name="courses">Courses</string>
-    <!-- AddTerm UI -->
+    <!-- Terms UI -->
     <string name="term_title">Term Title Here</string>
-    <string name="add_term_selection">Add New Term</string>
-    <string name="save">Save</string>
-
-
-    <string name="modify_term">Modify Term</string>
-    <string name="delete_term">Delete Term</string>
-    <string name="textview">TextView</string>
-    <string name="add_new_course">Add New Course</string>
-    <string name="add_new_assessment">Add New Assessment</string>
     <string name="add_new_term">Add New Term</string>
-    <string name="view_course_details">View Course Details</string>
-    <string name="view_assessment_details">View Assessment Details</string>
+    <string name="no_terms">There are no terms on your schedule. Please add a new term.</string>
+    <string name="enter_term_title">Enter Term Title</string>
     <string name="view_term_details">View Term Details</string>
-    <string name="textview2">TextView</string>
+    <string name="courses">Courses</string>
+    <string name="delete_term">Delete Term</string>
+    <string name="term_title_label">Term Title</string>
+    <!-- Courses UI -->
+    <string name="add_new_course">Add New Course</string>
+    <string name="view_course_details">View Course Details</string>
+
+    <!-- Assessments UI -->
+    <string name="add_new_assessment">Add New Assessment</string>
+    <string name="view_assessment_details">View Assessment Details</string>
 
 
+    <!-- Miscellaneous -->
+    <string name="save">Save</string>
     <string name="enter_end_date">Enter End Date</string>
     <string name="enter_start_date">Enter Start Date</string>
-    <string name="term_title_label">Term Title</string>
+
+
 
 
     <string name="update_button">Update</string>
@@ -51,7 +59,6 @@
     <string name="view_assessment_item">View Assessment Item</string>
     <string name="no_assessments">No available assessments.</string>
     <string name="no_courses">There are no courses for this term. Please add a new course.</string>
-    <string name="no_terms_available">No available terms.</string>
     <string name="course_title">Course Title</string>
     <string name="start_date">Start Date</string>
     <string name="end_date">End Date</string>
@@ -72,5 +79,21 @@
     <string name="course_end_item">Course End Item</string>
     <string name="start">Start</string>
     <string name="select_course">Select Course</string>
+    <string name="enter_course_title">Enter Course Title</string>
+    <string name="select_assessment">Select Assessment</string>
+    <string name="course_instructor_information">Course Instructor Information</string>
+    <string name="assessment_title">Assessment Title</string>
+    <string name="assessment_type">Assessment Type</string>
+    <string name="enter_type">Enter Type</string>
+    <string name="delete_assessment">Delete Assessment</string>
+    <string name="delete_course">Delete Course</string>
+    <string name="enter_notes">Enter Notes</string>
+    <string name="select_status">Select Status</string>
+    <string name="selection_for_course_status">Selection for course status</string>
+    <string name="view_assessment_type">View Assessment Type</string>
+    <string name="end">End</string>
+    <string name="course_notes">Course Notes</string>
+    <string name="no_date">No date.</string>
+    <string name="term_placeholder">No available terms. Please add a term.</string>
 
 </resources>
