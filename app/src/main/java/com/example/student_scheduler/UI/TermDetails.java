@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -42,13 +41,12 @@ public class TermDetails extends AppCompatActivity {
     CourseAdapter courseAdapter;
     Repository repository;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
 
-        // Labels and edit text fields for selected term
+        // Editable text fields
         term_title = findViewById(R.id.term_title_edit);
         term_start = findViewById(R.id.term_start_edit);
         term_end = findViewById(R.id.term_end_edit);
@@ -121,11 +119,8 @@ public class TermDetails extends AppCompatActivity {
             switch (menuItem.getItemId()) {
                 case R.id.add_course:
                     Intent toAddCourse = new Intent(TermDetails.this, AddCourse.class);
+                    toAddCourse.putExtra("term_id", termID);
                     startActivity(toAddCourse);
-                    break;
-                case R.id.add_term:
-                    Intent toAddTerm = new Intent(TermDetails.this, AddTerm.class);
-                    startActivity(toAddTerm);
                     break;
                 case R.id.delete_term:
                     if (courseAdapter.getItemCount() > 0 ){
