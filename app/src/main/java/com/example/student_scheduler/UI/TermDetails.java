@@ -61,7 +61,7 @@ public class TermDetails extends AppCompatActivity {
 
         term_title.requestFocus();
 
-        termID = getIntent().getIntExtra("term_id", -1);
+        termID = getIntent().getIntExtra("term_id",termID);
 
         // Display associated courses with the selected term
         RecyclerView courseListRecycler = findViewById(R.id.course_list_recycler);
