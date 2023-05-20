@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
-import com.example.student_scheduler.entities.Course;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
@@ -43,9 +42,6 @@ public class TermDetails extends AppCompatActivity {
     CourseAdapter courseAdapter;
     Repository repository;
 
-    // Confirmation Message
-    String confirmMessage = "Term was successfully updated.";
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +65,18 @@ public class TermDetails extends AppCompatActivity {
 
         termID = getIntent().getIntExtra("term_id", -1);
 
-        // Display associated courses with the term
+        // Display associated courses with the selected term
         RecyclerView courseListRecycler = findViewById(R.id.course_list_recycler);
         repository = new Repository(getApplication());
         courseAdapter = new CourseAdapter(this);
         courseListRecycler.setAdapter(courseAdapter);
         courseListRecycler.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.setCourses(repository.getAssociatedCourses(termID));
+
+        // Display if there are no associated courses
+        if(courseListRecycler.getAdapter() != null && courseListRecycler.getAdapter().getItemCount() == 0){
+            Toast.makeText(this,"No courses. Please add a course.", Toast.LENGTH_SHORT).show();
+        }
 
         // Update selected term and confirm update
         Button updateTerm = findViewById(R.id.update_term);
@@ -84,7 +85,8 @@ public class TermDetails extends AppCompatActivity {
                         term_start.getText().toString(), term_end.getText().toString());
                 repository.update(term);
 
-                Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "Term was successfully updated.",
+                        Toast.LENGTH_SHORT).show();
                 finish();
         });
 
@@ -146,7 +148,8 @@ public class TermDetails extends AppCompatActivity {
         Term term = new Term(termID, term_title.getText().toString(),
                 term_start.getText().toString(), term_end.getText().toString());
         repository.delete(term);
-        Toast.makeText(this, "Term deleted", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Term was successfully deleted.",
+                Toast.LENGTH_SHORT).show();
         finish();
     }
 
