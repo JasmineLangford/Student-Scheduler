@@ -3,8 +3,6 @@
 
     <item android:title="@string/add_new_course"
         android:id="@+id/add_course"/>
-    <item android:title="@string/add_new_term"
-        android:id="@+id/add_term"/>
     <item android:title="@string/delete_term"
         android:id="@+id/delete_term"/>
 </menu>
