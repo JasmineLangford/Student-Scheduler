@@ -8,14 +8,14 @@
     android:orientation="vertical"
     tools:context=".UI.CourseDetails">
 
-    <!-- ToDo: Fix scrolling problem/-->
-
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/courses_extended_fab"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fillViewport="true">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:autofillHints=""
-                    android:hint="@string/enter_course_title"
+                    android:hint="@string/enter_title"
                     android:inputType="text"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
@@ -121,9 +121,14 @@
 
                 <Spinner
                     android:id="@+id/course_status_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="15dp"
+                    android:background="#D13DDC"
+                    android:spinnerMode="dropdown"
+                    android:gravity="center"
                     android:textColor="@color/black"
+                    android:dropDownWidth="wrap_content"
                     android:contentDescription="@string/selection_for_course_status"/>
             </LinearLayout>
 
@@ -161,7 +166,7 @@
                     android:layout_height="48dp"
                     android:autofillHints=""
                     android:hint="@string/enter_name"
-                    android:inputType="date"
+                    android:inputType="text"
                     android:paddingStart="16dp"
                     android:paddingEnd="16dp"
                     android:textColor="@color/black"
@@ -232,7 +237,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:paddingTop="20dp"
-                    android:text="Course Notes"
+                    android:text="@string/course_notes"
                     android:textColor="#D13DDC"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -245,9 +250,9 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/course_notes"
+                    android:id="@+id/course_notes_edit"
                     android:layout_width="360dp"
-                    android:layout_height="100dp"
+                    android:layout_height="150dp"
                     android:layout_marginTop="10dp"
                     android:autofillHints=""
                     android:background="@drawable/course_note_border"
