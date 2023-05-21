@@ -21,9 +21,9 @@ import java.util.Objects;
  */
 public class AddTerm extends AppCompatActivity {
 
-    EditText editTermTitle;
-    EditText editTermStart;
-    EditText editTermEnd;
+    EditText addTermTitle;
+    EditText addTermStart;
+    EditText addTermEnd;
 
     String termTitleEdit;
     String termStartEdit;
@@ -33,26 +33,23 @@ public class AddTerm extends AppCompatActivity {
     Term term;
     Repository repository;
 
-    // Confirmation Message
-    String confirmMessage = "New term was successfully added.";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_term);
 
         // Editable text fields
-        editTermTitle = findViewById(R.id.term_title_edit);
-        editTermStart = findViewById(R.id.term_start_edit);
-        editTermEnd = findViewById(R.id.term_end_edit);
+        addTermTitle = findViewById(R.id.term_title_edit);
+        addTermStart = findViewById(R.id.term_start_edit);
+        addTermEnd = findViewById(R.id.term_end_edit);
 
         termTitleEdit = getIntent().getStringExtra("term_title");
         termStartEdit = getIntent().getStringExtra("term_start");
         termEndEdit = getIntent().getStringExtra("term_end");
 
-        editTermTitle.setText(termTitleEdit);
-        editTermStart.setText(termStartEdit);
-        editTermEnd.setText(termEndEdit);
+        addTermTitle.setText(termTitleEdit);
+        addTermStart.setText(termStartEdit);
+        addTermEnd.setText(termEndEdit);
 
         // Cancel and go back to list of terms
         Button cancel = findViewById(R.id.cancel_button);
@@ -61,14 +58,15 @@ public class AddTerm extends AppCompatActivity {
         // Save fields
         repository = new Repository(getApplication());
         termID = getIntent().getIntExtra("term_id", -1);
-        Button button = findViewById(R.id.save_new_term);
-        button.setOnClickListener(view -> {
+        Button saveTerm = findViewById(R.id.save_new_term);
+        saveTerm.setOnClickListener(view -> {
             if (termID == -1) {
-                term = new Term(0, editTermTitle.getText().toString(),
-                        editTermStart.getText().toString(), editTermEnd.getText().toString());
+                term = new Term(0, addTermTitle.getText().toString(),
+                        addTermStart.getText().toString(), addTermEnd.getText().toString());
                 repository.insert(term);
 
-                Toast.makeText(getApplication(), confirmMessage, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "Term was successfully added.",
+                        Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
@@ -81,13 +79,11 @@ public class AddTerm extends AppCompatActivity {
      * button is clicked, `onBackPressed()` is called to go back to the previous activity.
      */
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
 }
