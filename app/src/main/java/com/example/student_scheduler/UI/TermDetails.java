@@ -71,11 +71,6 @@ public class TermDetails extends AppCompatActivity {
         courseListRecycler.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.setCourses(repository.getAssociatedCourses(termID));
 
-        // Display if there are no associated courses
-        if(courseListRecycler.getAdapter() != null && courseListRecycler.getAdapter().getItemCount() == 0){
-            Toast.makeText(this,"No courses. Please add a course.", Toast.LENGTH_SHORT).show();
-        }
-
         // Update selected term and confirm update
         Button updateTerm = findViewById(R.id.update_term);
         updateTerm.setOnClickListener(view -> {
@@ -94,6 +89,28 @@ public class TermDetails extends AppCompatActivity {
         // Extended FAB with sub menu
         ExtendedFloatingActionButton termFab = findViewById(R.id.terms_extended_fab);
         termFab.setOnClickListener(this::showSubMenu);
+    }
+
+    /**
+     * This method is called when the activity is resumed, and it sets up the RecyclerView
+     * to display a list of all terms.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        RecyclerView courseListRecycler = findViewById(R.id.course_list_recycler);
+        repository = new Repository(getApplication());
+        courseAdapter = new CourseAdapter(this);
+        courseListRecycler.setAdapter(courseAdapter);
+        courseListRecycler.setLayoutManager(new LinearLayoutManager(this));
+        courseAdapter.setCourses(repository.getAssociatedCourses(termID));
+
+        // Display if there are no associated courses
+        if(courseListRecycler.getAdapter() != null && courseListRecycler.getAdapter().getItemCount() == 0){
+            Toast.makeText(this,"No courses. Please add a course.", Toast.LENGTH_SHORT).show();
+
+        }
     }
 
     /**
@@ -147,5 +164,4 @@ public class TermDetails extends AppCompatActivity {
                 Toast.LENGTH_SHORT).show();
         finish();
     }
-
 }
