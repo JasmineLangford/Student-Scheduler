@@ -86,12 +86,6 @@ public class AddCourse extends AppCompatActivity{
                 R.array.status, android.R.layout.simple_spinner_item);
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         courseStatusSpinner.setAdapter(statusAdapter);
-        //courseStatusSpinner.setOnItemSelectedListener(this);
-
-
-//        String courseStatus = getIntent().getStringExtra("course_status");
-//        int position = statusAdapter.getPosition(courseStatus);
-//        courseStatusSpinner.setSelection(0);
 
         // Save fields
         repository = new Repository(getApplication());
@@ -126,22 +120,4 @@ public class AddCourse extends AppCompatActivity{
         }
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-//        String selectedStatus = adapterView.getItemAtPosition(position).toString();
-//        if (courseID != -1 && termID != -1) {
-//            repository = new Repository(getApplication());
-//            Course selectedCourse = (Course) repository.getAssociatedCourses(termID);
-//            if (selectedCourse != null) {
-//                selectedCourse.setCourseStatus(selectedStatus);
-//                repository.update(selectedCourse);
-//            }
-//        }
-//    }
-//
-//    @Override
-//    public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//    }
 }
