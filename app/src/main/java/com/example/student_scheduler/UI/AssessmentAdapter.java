@@ -28,14 +28,16 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
             assessmentItem.setOnClickListener(view -> {
                 int position = getBindingAdapterPosition();
-                final Assessment current = mAssessments.get(position);
-                Intent intent = new Intent(context, AssessmentDetails.class);
-                intent.putExtra("assessment_id",current.getAssessmentID());
-                intent.putExtra("course_id",current.getCourseID());
-                intent.putExtra("assessment_title",current.getAssessmentTitle());
-                intent.putExtra("assessment_type",current.getAssessmentType());
-                intent.putExtra("assessment_end",current.getAssessmentEndDate());
-                context.startActivity(intent);
+                if(position != RecyclerView.NO_POSITION) {
+                    final Assessment current = mAssessments.get(position);
+                    Intent intent = new Intent(context, AssessmentDetails.class);
+                    intent.putExtra("assessment_id", current.getAssessmentID());
+                    intent.putExtra("course_id", current.getCourseID());
+                    intent.putExtra("assessment_title", current.getAssessmentTitle());
+                    intent.putExtra("assessment_type", current.getAssessmentType());
+                    intent.putExtra("assessment_end", current.getAssessmentEndDate());
+                    context.startActivity(intent);
+                }
             });
         }
     }
@@ -56,7 +58,6 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         return new AssessmentViewHolder((itemView));
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull AssessmentViewHolder holder, int position) {
         if(mAssessments != null) {

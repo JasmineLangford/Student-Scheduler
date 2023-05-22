@@ -33,14 +33,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
                     final Course current = mCourses.get(position);
                     Intent intent = new Intent(context, CourseDetails.class);
                     intent.putExtra("course_id", current.getCourseID());
+                    intent.putExtra("term_id", current.getTermID());
                     intent.putExtra("course_title", current.getCourseTitle());
                     intent.putExtra("course_start", current.getCourseStartDate());
                     intent.putExtra("course_end", current.getCourseEndDate());
-//                    intent.putExtra("course_status", current.getCourseStatus());
-//                    intent.putExtra("instructor_name", current.getInstructorName());
-//                    intent.putExtra("instructor_email", current.getInstructorEmail());
-//                    intent.putExtra("instructor_phone", current.getInstructorPhone());
-//                    intent.putExtra("course_notes",current.getCourseNote());
+                    intent.putExtra("course_status", current.getCourseStatus());
+                    intent.putExtra("instructor_name", current.getInstructorName());
+                    intent.putExtra("instructor_email", current.getInstructorEmail());
+                    intent.putExtra("instructor_phone", current.getInstructorPhone());
+                    intent.putExtra("course_notes",current.getCourseNote());
                     context.startActivity(intent);
                 }
             });
@@ -74,11 +75,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
             holder.courseTitleView.setText(title);
             holder.courseStartView.setText(start);
             holder.courseEndView.setText(end);
-
-        } else {
-            holder.courseTitleView.setText(R.string.no_courses);
-            holder.courseStartView.setText(R.string.no_date);
-            holder.courseEndView.setText(R.string.no_date);
         }
     }
 
