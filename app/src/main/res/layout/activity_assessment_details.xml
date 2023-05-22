@@ -31,14 +31,14 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="61dp"
                     android:text="@string/assessment_title"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/term_title_edit"
+                    android:id="@+id/assessment_title_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:autofillHints=""
@@ -54,7 +54,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -64,24 +65,25 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/term_start_edit"
+                <Spinner
+                    android:id="@+id/assessment_type_spinnner"
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:autofillHints=""
-                    android:hint="@string/enter_type"
-                    android:inputType="date"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/hint_text"
-                    android:textSize="16sp" />
+                    android:layout_height="45dp"
+                    android:layout_marginStart="15dp"
+                    android:background="#D13DDC"
+                    android:contentDescription="@string/select_for_assessment_type"
+                    android:dropDownWidth="wrap_content"
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/black" />
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,7 +94,7 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/term_end_edit"
+                    android:id="@+id/assessment_end_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:autofillHints=""
@@ -115,6 +117,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/actions"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:backgroundTint="#D13DDC"
         app:icon="@android:drawable/ic_input_add"
         app:iconTint="@color/white"
@@ -132,11 +135,12 @@
         android:insetBottom="0dp"
         android:text="@string/update_button"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.358"
+        app:layout_constraintVertical_bias="0.400"
         tools:ignore="RtlSymmetry" />
 </androidx.constraintlayout.widget.ConstraintLayout>

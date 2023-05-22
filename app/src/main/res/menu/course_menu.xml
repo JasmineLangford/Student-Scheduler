@@ -4,9 +4,6 @@
         android:id="@+id/add_assessment"
         android:title="@string/add_new_assessment" />
     <item
-        android:id="@+id/add_course"
-        android:title="@string/add_new_course" />
-    <item
         android:id="@+id/delete_course"
         android:title="@string/delete_course" />
 </menu>

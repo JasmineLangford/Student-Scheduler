@@ -11,6 +11,15 @@
         <item>Dropped</item>
         <item>Plan to take</item>
     </string-array>
+
+    <!-- Assessment Type Spinner -->
+    <string name="assessment_type_selection">Assessment Type</string>
+    <string-array name="type">
+        <item>Select an option</item>
+        <item>Performance Assessment</item>
+        <item>Objective Assessment</item>
+    </string-array>
+
     <!-- MainActivity UI -->
     <string name="first_intro">Stay organized and on top of your studies with ease.</string>
     <string name="second_intro">Input your class schedule, add deadlines and course notes, and set alerts to stay on track.</string>
@@ -95,5 +104,6 @@
     <string name="course_notes">Course Notes</string>
     <string name="no_date">No date.</string>
     <string name="term_placeholder">No available terms. Please add a term.</string>
+    <string name="select_for_assessment_type">Select for assessment type</string>
 
 </resources>
