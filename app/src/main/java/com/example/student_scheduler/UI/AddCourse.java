@@ -76,7 +76,7 @@ public class AddCourse extends AppCompatActivity{
         addEmail.setText(emailEdit);
         addCourseNotes.setText(courseNoteEdit);
 
-        // Cancel and go back to list of terms
+        // Cancel and go back to term details
         Button cancel = findViewById(R.id.cancel_button);
         cancel.setOnClickListener(view -> finish());
 
