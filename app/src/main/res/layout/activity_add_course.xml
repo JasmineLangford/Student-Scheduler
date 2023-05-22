@@ -11,9 +11,9 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fillViewport="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fillViewport="true">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -123,11 +123,11 @@
                     android:layout_height="45dp"
                     android:layout_marginStart="15dp"
                     android:background="#D13DDC"
-                    android:spinnerMode="dropdown"
-                    android:gravity="center"
-                    android:textColor="@color/black"
+                    android:contentDescription="@string/selection_for_course_status"
                     android:dropDownWidth="wrap_content"
-                    android:contentDescription="@string/selection_for_course_status"/>
+                    android:gravity="center"
+                    android:spinnerMode="dropdown"
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <LinearLayout
@@ -252,6 +252,7 @@
                     android:layout_width="360dp"
                     android:layout_height="150dp"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="16dp"
                     android:autofillHints=""
                     android:background="@drawable/course_note_border"
                     android:gravity="top"
@@ -260,7 +261,6 @@
                     android:paddingStart="8dp"
                     android:paddingTop="8dp"
                     android:paddingEnd="8dp"
-                    android:layout_marginBottom="16dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/hint_text"
                     android:textSize="16sp" />
@@ -289,11 +289,13 @@
                 android:id="@+id/cancel_button"
                 android:layout_width="303dp"
                 android:layout_height="64dp"
-                android:layout_marginTop="15dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@color/secondary_button"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/secondary_button"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
                 android:text="@string/cancel_button"
-                android:textColor="#3700B3"
+                android:textColor="@color/primary_button"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
