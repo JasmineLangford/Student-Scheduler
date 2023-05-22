@@ -2,7 +2,9 @@ package com.example.student_scheduler.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
+/**
+ * This class represents the assessments table in the database.
+ */
 @Entity(tableName = "assessments")
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
@@ -12,12 +14,12 @@ public class Assessment {
     private String assessmentTitle;
     private String assessmentEndDate;
 
-    public Assessment(int assessmentID, int courseID, String assessmentType, String assessmentTitle,
+    public Assessment(int assessmentID, int courseID, String assessmentTitle, String assessmentType,
                       String assessmentEndDate) {
         this.assessmentID = assessmentID;
         this.courseID = courseID;
-        this.assessmentType = assessmentType;
         this.assessmentTitle = assessmentTitle;
+        this.assessmentType = assessmentType;
         this.assessmentEndDate = assessmentEndDate;
     }
 
