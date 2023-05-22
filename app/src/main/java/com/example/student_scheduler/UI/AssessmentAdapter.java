@@ -31,6 +31,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 final Assessment current = mAssessments.get(position);
                 Intent intent = new Intent(context, AssessmentDetails.class);
                 intent.putExtra("assessment_id",current.getAssessmentID());
+                intent.putExtra("course_id",current.getCourseID());
                 intent.putExtra("assessment_title",current.getAssessmentTitle());
                 intent.putExtra("assessment_type",current.getAssessmentType());
                 intent.putExtra("assessment_end",current.getAssessmentEndDate());
@@ -62,12 +63,9 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
             Assessment current = mAssessments.get(position);
             String assessmentTitle = current.getAssessmentTitle();
             String assessmentType = current.getAssessmentType();
+
             holder.assessmentTitleView.setText(assessmentTitle);
             holder.assessmentTypeView.setText(assessmentType);
-        }
-        else{
-            holder.assessmentTitleView.setText("There are no available assessments for this course. " +
-                    "Please add an assessment.");
         }
     }
 
