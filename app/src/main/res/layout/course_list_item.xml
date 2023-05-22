@@ -5,6 +5,18 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/course_end"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/course_end_item"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/course_end2"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:layout_width="40dp"
         android:layout_height="39dp"
@@ -20,47 +32,10 @@
         tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/course_end"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="52dp"
-        android:text="@string/course_end_item"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/course_end2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/course_end2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="236dp"
-        android:layout_marginTop="52dp"
-        android:text="@string/end"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/course_start"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:text="@string/course_start_item"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/course_start2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/course_start2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="84dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="52dp"
         android:text="@string/start"
         android:textColor="@color/black"
@@ -73,11 +48,36 @@
         android:id="@+id/course_title"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="28dp"
         android:text="@string/course_title_item"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/course_start"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/course_start_item"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/course_start2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/course_end2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="224dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/end"
+        android:textColor="@color/black"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
