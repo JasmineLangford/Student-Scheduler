@@ -91,7 +91,6 @@ public class AddCourse extends AppCompatActivity{
         repository = new Repository(getApplication());
         Button saveCourse = findViewById(R.id.add_course);
         saveCourse.setOnClickListener(view -> {
-            if (courseID == -1) {
                 course = new Course(0,termID,addCourseTitle.getText().toString(),
                         addCourseStart.getText().toString(),addCourseEnd.getText().toString(),
                         courseStatusSpinner.getSelectedItem().toString(),
@@ -103,7 +102,6 @@ public class AddCourse extends AppCompatActivity{
                 Toast.makeText(getApplication(), "Course was successfully added.",
                         Toast.LENGTH_SHORT).show();
                 finish();
-            }
         });
         // Display toolbar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
