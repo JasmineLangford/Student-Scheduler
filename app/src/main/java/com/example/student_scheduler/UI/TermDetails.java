@@ -33,9 +33,11 @@ public class TermDetails extends AppCompatActivity {
     EditText term_title;
     EditText term_start;
     EditText term_end;
+
     String termTitle;
     String termStart;
     String termEnd;
+
     int termID;
     Term term;
     CourseAdapter courseAdapter;

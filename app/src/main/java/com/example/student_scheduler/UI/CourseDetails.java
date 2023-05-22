@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -61,7 +59,8 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
 
-        termID = getIntent().getIntExtra("term_id", 0);
+        termID = getIntent().getIntExtra("term_id",termID);
+        courseID = getIntent().getIntExtra("course_id",courseID);
 
         // Editable text fields
         course_title = findViewById(R.id.course_title_edit);
@@ -90,8 +89,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
 
         course_title.requestFocus();
 
-        courseID = getIntent().getIntExtra("course_id",courseID);
-
         // Display associated assessments with course
         RecyclerView assessmentListRecycler = findViewById(R.id.assessment_list_recycler);
         repository = new Repository(getApplication());
@@ -115,7 +112,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         //Update selected course and confirm update
         Button updateCourse = findViewById(R.id.update_course);
         updateCourse.setOnClickListener(view -> {
-                course = new Course(0,termID,course_title.getText().toString(),
+                course = new Course(courseID,termID,course_title.getText().toString(),
                         course_start.getText().toString(),course_end.getText().toString(),
                         courseStatusSpinner.getSelectedItem().toString(),
                         instructor_name.getText().toString(), instructor_phone.getText().toString(),
