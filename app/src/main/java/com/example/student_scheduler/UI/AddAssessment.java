@@ -16,6 +16,11 @@ import com.example.student_scheduler.entities.Assessment;
 
 import java.util.Objects;
 
+/**
+ * This activity allows the user to add a new assessment to the database and displays the new
+ * assessment on the screen with the listed assessments once the Save button is clicked.
+ */
+
 public class AddAssessment extends AppCompatActivity {
 
     EditText addAssessmentTitle;

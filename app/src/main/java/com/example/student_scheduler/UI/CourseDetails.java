@@ -144,7 +144,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         final AssessmentAdapter assessmentAdapter = new AssessmentAdapter(this);
         assessmentListRecycler.setAdapter(assessmentAdapter);
         assessmentListRecycler.setLayoutManager(new LinearLayoutManager(this));
-        assessmentAdapter.setAssessments(repository.getAllAssessments());
+        assessmentAdapter.setAssessments(repository.getAssociatedAssessments(courseID));
 
         // Display if there are no associated courses
         if(assessmentListRecycler.getAdapter() != null &&
@@ -178,6 +178,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                 case R.id.add_assessment:
                     Intent toAddAssessment = new Intent(CourseDetails.this,
                             AddAssessment.class);
+                    toAddAssessment.putExtra("course_id", courseID);
                     startActivity(toAddAssessment);
                     break;
                 case R.id.delete_course:
