@@ -2,6 +2,12 @@
 
     <!-- ToDo: Clean up string resources -->
 
+    <!-- Notifications -->
+    <string name="notification_selection">Notifications</string>
+    <string name="share">Share</string>
+    <string name="notify_start">Notify Start</string>
+    <string name="notify_end">Notify End</string>
+
     <!-- Course Status Spinner -->
     <string name="course_status_selection">Course Status</string>
     <string-array name="status">

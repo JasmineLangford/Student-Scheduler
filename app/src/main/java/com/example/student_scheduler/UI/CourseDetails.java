@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,12 +22,16 @@ import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Course;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
  * This activity allows the user to view details for a selected course. The data is populated into
  * EditText fields for the user to modify or delete.
- *
+ * <p>
  * The user can also use the floating action button in the bottom right-hand corner to view
  * additional options related to the course.
  */
@@ -59,8 +64,8 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
 
-        termID = getIntent().getIntExtra("term_id",termID);
-        courseID = getIntent().getIntExtra("course_id",courseID);
+        termID = getIntent().getIntExtra("term_id", termID);
+        courseID = getIntent().getIntExtra("course_id", courseID);
 
         // Editable text fields
         course_title = findViewById(R.id.course_title_edit);
@@ -112,15 +117,15 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         //Update selected course and confirm update
         Button updateCourse = findViewById(R.id.update_course);
         updateCourse.setOnClickListener(view -> {
-                course = new Course(courseID,termID,course_title.getText().toString(),
-                        course_start.getText().toString(),course_end.getText().toString(),
-                        courseStatusSpinner.getSelectedItem().toString(),
-                        instructor_name.getText().toString(), instructor_phone.getText().toString(),
-                        instructor_email.getText().toString(), course_notes.getText().toString());
-                repository.update(course);
+            course = new Course(courseID, termID, course_title.getText().toString(),
+                    course_start.getText().toString(), course_end.getText().toString(),
+                    courseStatusSpinner.getSelectedItem().toString(),
+                    instructor_name.getText().toString(), instructor_phone.getText().toString(),
+                    instructor_email.getText().toString(), course_notes.getText().toString());
+            repository.update(course);
 
-                Toast.makeText(this,"Course was successfully updated.",Toast.LENGTH_SHORT).show();
-                finish();
+            Toast.makeText(this, "Course was successfully updated.", Toast.LENGTH_SHORT).show();
+            finish();
         });
 
         // Display toolbar
@@ -129,6 +134,11 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         // Extended FAB with sub menu
         ExtendedFloatingActionButton courseFab = findViewById(R.id.courses_extended_fab);
         courseFab.setOnClickListener(this::showSubMenu);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
     /**
@@ -147,9 +157,9 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         assessmentAdapter.setAssessments(repository.getAssociatedAssessments(courseID));
 
         // Display if there are no associated courses
-        if(assessmentListRecycler.getAdapter() != null &&
-                assessmentListRecycler.getAdapter().getItemCount() == 0){
-            Toast.makeText(this,"No assessments. Please add an assessment.",
+        if (assessmentListRecycler.getAdapter() != null &&
+                assessmentListRecycler.getAdapter().getItemCount() == 0) {
+            Toast.makeText(this, "No assessments. Please add an assessment.",
                     Toast.LENGTH_SHORT).show();
         }
     }
@@ -159,12 +169,39 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
      * button is clicked, `onBackPressed()` is called to go back to the previous activity.
      */
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            // Send notes
+            case R.id.share_notes:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT,courseNotes);
+                sendIntent.putExtra(Intent.EXTRA_TITLE, "Send message title");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+                return true;
+
+//            case R.id.notify_start:
+//                // Date and date format
+//                String dateFormat = "MM/dd/yyyy";
+//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat,Locale.US);
+//                course_start.setText(simpleDateFormat.format(new Date()));
+//                Date thisDate = null;
+//                try{
+//                    thisDate.simpleDateFormat.parse(currentDate);
+//                }catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//                Long trigger = thisDate.getTime();
     }
+        return super.onOptionsItemSelected(item);
+
+}
 
     /**
      * This method is called when the floating action button is clicked. This popup menu provides
@@ -182,13 +219,13 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                     startActivity(toAddAssessment);
                     break;
                 case R.id.delete_course:
-                if (assessmentAdapter.getItemCount() > 0) {
-                    Toast.makeText(CourseDetails.this, "Please delete associated " +
-                            "assessments before deleting this course.", Toast.LENGTH_SHORT).show();
-                } else {
-                    deleteCourse();
-                }
-                break;
+                    if (assessmentAdapter.getItemCount() > 0) {
+                        Toast.makeText(CourseDetails.this, "Please delete associated " +
+                                "assessments before deleting this course.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        deleteCourse();
+                    }
+                    break;
             }
             return true;
         });
@@ -198,6 +235,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
     }
+
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
