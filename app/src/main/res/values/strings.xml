@@ -105,5 +105,6 @@
     <string name="no_date">No date.</string>
     <string name="term_placeholder">No available terms. Please add a term.</string>
     <string name="select_for_assessment_type">Select for assessment type</string>
+    <string name="date_format">mm/dd/yyyy</string>
 
 </resources>
