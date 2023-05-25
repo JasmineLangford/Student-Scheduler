@@ -95,7 +95,7 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
-                <EditText
+                <!--EditText
                     android:id="@+id/assessment_end_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
@@ -106,7 +106,17 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginStart="16dp"
                     android:inputType="date"
-                    android:autofillHints="" />
+                    android:autofillHints="" /-->
+
+                <Button
+                    android:id="@+id/end_date_picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/white"
+                    android:text="@string/select_date"
+                    android:layout_marginStart="16dp"
+                    android:textColor="@color/black" />
 
             </LinearLayout>
         </LinearLayout>
@@ -143,5 +153,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.617" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
