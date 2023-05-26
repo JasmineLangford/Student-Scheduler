@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
     tools:context=".UI.AddAssessment">
 
     <ScrollView
@@ -21,8 +21,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="16dp">
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,24 +32,24 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/assessment_title"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp" />
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/assessment_title_edit"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:autofillHints=""
                     android:hint="@string/enter_title"
+                    android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHint="#757575"
-                    android:textSize="16sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
-                    android:inputType="text"
-                    android:autofillHints="" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -60,30 +60,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="25dp"
                     android:text="@string/assessment_type"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="16dp" />
+                    android:textSize="16sp" />
 
                 <Spinner
                     android:id="@+id/assessment_type_spinnner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="20dp"
-                    android:background="#D13DDC"
-                    android:contentDescription="@string/select_for_assessment_type"
-                    android:dropDownWidth="wrap_content"
-                    android:gravity="center"
-                    android:spinnerMode="dropdown"
-                    android:textColor="@color/black" />
-
+                    style="@style/SpinnerStyle"
+                    android:layout_gravity="center"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -95,28 +88,13 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
-                <!--EditText
-                    android:id="@+id/assessment_end_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:hint="@string/date_format"
-                    android:textColor="@color/black"
-                    android:textColorHint="#757575"
-                    android:textSize="16sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="16dp"
-                    android:inputType="date"
-                    android:autofillHints="" /-->
-
                 <Button
                     android:id="@+id/end_date_picker"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/white"
-                    android:text="@string/select_date"
-                    android:layout_marginStart="16dp"
-                    android:textColor="@color/black" />
+                    style="@style/DatePickerStyle"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/user_selects_end_date_from_date_picker"
+                    android:textStyle="normal"
+                    app:cornerRadius="0dp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -126,7 +104,7 @@
         android:id="@+id/add_assessment"
         android:layout_width="303dp"
         android:layout_height="64dp"
-        android:background="@color/primary_button"
+        android:backgroundTint="@color/purple_700"
         android:insetLeft="0dp"
         android:insetTop="0dp"
         android:insetRight="0dp"
@@ -134,23 +112,27 @@
         android:text="@string/save_button"
         android:textColor="@color/white"
         android:textStyle="bold"
+        app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.449" />
+        app:layout_constraintVertical_bias="0.470" />
 
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="303dp"
         android:layout_height="64dp"
-        android:background="@color/secondary_button"
+        android:backgroundTint="@color/secondary_button"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
         android:text="@string/cancel_button"
         android:textColor="@color/primary_button"
         android:textStyle="bold"
+        app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.617" />
+        app:layout_constraintVertical_bias="0.615" />
 </androidx.constraintlayout.widget.ConstraintLayout>
