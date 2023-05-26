@@ -2,6 +2,7 @@ package com.example.student_scheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,10 @@ import com.example.student_scheduler.R;
 import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Course;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -22,9 +27,13 @@ import java.util.Objects;
  */
 public class AddCourse extends AppCompatActivity{
 
+    Button startDatePicker;
+    Button endDatePicker;
+    DatePickerDialog.OnDateSetListener startDate;
+    DatePickerDialog.OnDateSetListener endDate;
+    final Calendar myCalendar = Calendar.getInstance();
+
     EditText addCourseTitle;
-    EditText addCourseStart;
-    EditText addCourseEnd;
     EditText addInstructorName;
     EditText addPhone;
     EditText addEmail;
@@ -48,13 +57,64 @@ public class AddCourse extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_course);
 
+        // DatePicker
+        startDatePicker = findViewById(R.id.start_date_picker);
+        endDatePicker = findViewById(R.id.end_date_picker);
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+        startDatePicker.setText(getString(R.string.select_date));
+        endDatePicker.setText(getString(R.string.select_date));
+
+        startDatePicker.setOnClickListener(view -> {
+            String info = startDatePicker.getText().toString();
+            try{
+                myCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            }catch (ParseException e) {
+                e.printStackTrace();
+            }
+            new DatePickerDialog(AddCourse.this,startDate,
+                    myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        endDatePicker.setOnClickListener(view -> {
+            String info = endDatePicker.getText().toString();
+            try{
+                myCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            }catch (ParseException e) {
+                e.printStackTrace();
+            }
+            new DatePickerDialog(AddCourse.this,endDate,
+                    myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),
+                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+
+        endDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateEndDate();
+
+            String selectedEndDate = simpleDateFormat.format(myCalendar.getTime());
+            endDatePicker.setText(selectedEndDate);
+        };
+
+        startDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+            myCalendar.set(Calendar.YEAR, year);
+            myCalendar.set(Calendar.MONTH, monthOfYear);
+            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateStartDate();
+
+            String selectedStartDate = simpleDateFormat.format(myCalendar.getTime());
+            startDatePicker.setText(selectedStartDate);
+        };
+
         termID = getIntent().getIntExtra("term_id",termID);
         courseID = getIntent().getIntExtra("course_id", -1);
 
         // Editable fields
         addCourseTitle = findViewById(R.id.course_title_edit);
-        addCourseStart = findViewById(R.id.course_start_edit);
-        addCourseEnd = findViewById(R.id.course_end_edit);
         addInstructorName = findViewById(R.id.instructor_name_edit);
         addEmail = findViewById(R.id.email_edit);
         addPhone = findViewById(R.id.phone_edit);
@@ -69,8 +129,6 @@ public class AddCourse extends AppCompatActivity{
         courseNoteEdit = getIntent().getStringExtra("course_notes");
 
         addCourseTitle.setText(courseTitleEdit);
-        addCourseStart.setText(courseStartEdit);
-        addCourseEnd.setText(courseEndEdit);
         addInstructorName.setText(instructorNameEdit);
         addPhone.setText(phoneEdit);
         addEmail.setText(emailEdit);
@@ -92,7 +150,7 @@ public class AddCourse extends AppCompatActivity{
         Button saveCourse = findViewById(R.id.add_course);
         saveCourse.setOnClickListener(view -> {
                 course = new Course(0,termID,addCourseTitle.getText().toString(),
-                        addCourseStart.getText().toString(),addCourseEnd.getText().toString(),
+                        startDatePicker.getText().toString(),endDatePicker.getText().toString(),
                         courseStatusSpinner.getSelectedItem().toString(),
                         addInstructorName.getText().toString(), addPhone.getText().toString(),
                         addEmail.getText().toString(), addCourseNotes.getText().toString());
@@ -117,5 +175,20 @@ public class AddCourse extends AppCompatActivity{
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    // Update date for date picker
+    private void updateStartDate(){
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        endDatePicker.setText(simpleDateFormat.format(myCalendar.getTime()));
+    }
+
+    private void updateEndDate(){
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        endDatePicker.setText(simpleDateFormat.format(myCalendar.getTime()));
     }
 }

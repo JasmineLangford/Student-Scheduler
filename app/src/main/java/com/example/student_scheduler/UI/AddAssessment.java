@@ -50,7 +50,7 @@ public class AddAssessment extends AppCompatActivity {
         endDatePicker = findViewById(R.id.end_date_picker);
         String formattedDate = "MM/dd/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
-        endDatePicker.setText("Select Date");
+        endDatePicker.setText(R.string.select_date);
         endDatePicker.setOnClickListener(view -> {
             String info = endDatePicker.getText().toString();
             try{
