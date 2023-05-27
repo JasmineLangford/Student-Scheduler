@@ -174,7 +174,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         int position = statusAdapter.getPosition(courseStatus);
         courseStatusSpinner.setSelection(position);
 
-        // Save button
+        // Update button
         Button updateCourse = findViewById(R.id.update_course);
         updateCourse.setOnClickListener(view -> {
             course = new Course(courseID, termID, course_title.getText().toString(),

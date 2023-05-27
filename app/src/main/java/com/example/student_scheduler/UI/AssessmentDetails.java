@@ -109,7 +109,7 @@ public class AssessmentDetails extends AppCompatActivity {
         int position = typeAdapter.getPosition(assessmentType);
         assessmentTypeSpinner.setSelection(position);
 
-        // Save button
+        // Update button
         repository = new Repository(getApplication());
         Button updateAssessment = findViewById(R.id.update_assessment);
         updateAssessment.setOnClickListener(view -> {
