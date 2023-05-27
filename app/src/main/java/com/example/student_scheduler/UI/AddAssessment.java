@@ -90,7 +90,7 @@ public class AddAssessment extends AppCompatActivity {
         assessmentTitleEdit = getIntent().getStringExtra("assessment_title");
         assessmentEndEdit = getIntent().getStringExtra("assessment_end");
 
-        // Set assessment title in the EditText
+        // Update UI field with intent extra
         addAssessmentTitle.setText(assessmentTitleEdit);
 
         // Cancel button
