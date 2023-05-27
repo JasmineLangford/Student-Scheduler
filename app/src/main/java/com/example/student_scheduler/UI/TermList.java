@@ -19,12 +19,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This activity provides the user with a list of available terms displayed in a RecyclerView,
- * which pulls data from the database. Upon selection of a term, details for that term will be
- * populated on the next screen.
- * <p>
- * There is also a floating action button located at the bottom right for the user to add a new
- * term.
+ * This activity allows the user to view a list of available terms. It also allows the user to
+ * navigate back to the previous screen.
  */
 public class TermList extends AppCompatActivity {
 
@@ -33,7 +29,7 @@ public class TermList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
 
-        // Display current terms in recyclerview
+        // Set up RecyclerView for displaying terms list
         RecyclerView termListRecycler = findViewById(R.id.term_list_recycler);
         final TermAdapter termAdapter = new TermAdapter(this);
         termListRecycler.setAdapter(termAdapter);
@@ -42,10 +38,10 @@ public class TermList extends AppCompatActivity {
         List<Term> allTerms = repository.getAllTerms();
         termAdapter.setTerms(allTerms);
 
-        // Display toolbar
+        // Enable back button in the action bar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // Extended FAB with sub menu
+        // Set click listener for floating action button
         ExtendedFloatingActionButton termFab = findViewById(R.id.terms_extended_fab);
         termFab.setOnClickListener(this::showSubMenu);
     }
@@ -58,7 +54,6 @@ public class TermList extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        // Display current terms
         RecyclerView termListRecycler = findViewById(R.id.term_list_recycler);
         final TermAdapter termAdapter = new TermAdapter(this);
         termListRecycler.setAdapter(termAdapter);
@@ -76,8 +71,10 @@ public class TermList extends AppCompatActivity {
     }
 
     /**
-     * This method is called when the floating action button is clicked. This popup menu provides
-     * the user the option of adding a new term.
+     * This method is called when the user clicks on the terms floating action button, which
+     * displays the submenu.
+     *
+     * @param view The view that triggered the event.
      */
     public void showSubMenu(View view) {
         PopupMenu termPopupMenu = new PopupMenu(this, view);
