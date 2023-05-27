@@ -28,7 +28,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
             assessmentItem.setOnClickListener(view -> {
                 int position = getBindingAdapterPosition();
-                if(position != RecyclerView.NO_POSITION) {
+                if (position != RecyclerView.NO_POSITION) {
                     final Assessment current = mAssessments.get(position);
                     Intent intent = new Intent(context, AssessmentDetails.class);
                     intent.putExtra("assessment_id", current.getAssessmentID());
@@ -46,7 +46,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
     private final Context context;
     private final LayoutInflater mInflater;
 
-    public AssessmentAdapter(Context context){
+    public AssessmentAdapter(Context context) {
         mInflater = LayoutInflater.from(context);
         this.context = context;
     }
@@ -54,13 +54,13 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
     @NonNull
     @Override
     public AssessmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.assessment_list_item,parent,false);
+        View itemView = mInflater.inflate(R.layout.assessment_list_item, parent, false);
         return new AssessmentViewHolder((itemView));
     }
 
     @Override
     public void onBindViewHolder(@NonNull AssessmentViewHolder holder, int position) {
-        if(mAssessments != null) {
+        if (mAssessments != null) {
             Assessment current = mAssessments.get(position);
             String assessmentTitle = current.getAssessmentTitle();
             String assessmentType = current.getAssessmentType();
@@ -72,10 +72,9 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
 
     @Override
     public int getItemCount() {
-        if(mAssessments == null) {
+        if (mAssessments == null) {
             return 0;
-        }
-        else {
+        } else {
             return mAssessments.size();
         }
     }

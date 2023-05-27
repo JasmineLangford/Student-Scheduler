@@ -41,7 +41,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
                     intent.putExtra("instructor_name", current.getInstructorName());
                     intent.putExtra("instructor_email", current.getInstructorEmail());
                     intent.putExtra("instructor_phone", current.getInstructorPhone());
-                    intent.putExtra("course_notes",current.getCourseNote());
+                    intent.putExtra("course_notes", current.getCourseNote());
                     context.startActivity(intent);
                 }
             });
@@ -80,10 +80,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
 
     @Override
     public int getItemCount() {
-        if(mCourses == null) {
+        if (mCourses == null) {
             return 0;
-        }
-        else {
+        } else {
             return mCourses.size();
         }
     }
