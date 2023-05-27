@@ -11,7 +11,7 @@
     <!-- Course Status Spinner -->
     <string name="course_status_selection">Course Status</string>
     <string-array name="status">
-        <item>Select an option</item>
+        <item>Select Status</item>
         <item>In progress</item>
         <item>Completed</item>
         <item>Dropped</item>
@@ -21,7 +21,7 @@
     <!-- Assessment Type Spinner -->
     <string name="assessment_type_selection">Assessment Type</string>
     <string-array name="type">
-        <item>Select an option</item>
+        <item>Select Type</item>
         <item>Performance Assessment</item>
         <item>Objective Assessment</item>
     </string-array>
@@ -112,5 +112,8 @@
     <string name="term_placeholder">No available terms. Please add a term.</string>
     <string name="select_for_assessment_type">Select for assessment type</string>
     <string name="date_format">mm/dd/yyyy</string>
+    <string name="select_date">Select Date</string>
+    <string name="user_selects_end_date_from_date_picker">User selects end date from date picker.</string>
+    <string name="user_selects_start_date_on_date_picker">User selects start date on date picker.</string>
 
 </resources>
