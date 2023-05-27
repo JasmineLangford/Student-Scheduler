@@ -39,7 +39,7 @@
             android:exported="false"
             android:label="Add New Term"
             android:parentActivityName=".UI.MainActivity"
-            android:theme="@style/Theme.AppCompat"
+            android:theme="@style/Theme.MaterialComponents"
             android:windowSoftInputMode="adjustPan" >
             <meta-data
                 android:name="android.app.lib_name"
