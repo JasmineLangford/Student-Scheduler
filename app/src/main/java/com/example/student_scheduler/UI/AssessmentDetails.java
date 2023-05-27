@@ -26,6 +26,10 @@ import java.util.Objects;
 
 // ToDo: add alerts
 
+/**
+ * This activity allows the user to view and update assessment information. It also provides options
+ * to delete the assessment and navigate back to the previous screen.
+ */
 public class AssessmentDetails extends AppCompatActivity {
 
     // UI elements
