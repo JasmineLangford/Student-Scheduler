@@ -1,7 +1,5 @@
 <resources>
 
-    <!-- ToDo: Clean up string resources -->
-
     <!-- Notifications -->
     <string name="notification_selection">Notifications</string>
     <string name="share">Share</string>
@@ -26,16 +24,13 @@
         <item>Objective Assessment</item>
     </string-array>
 
-    <!-- MainActivity UI -->
     <string name="first_intro">Stay organized and on top of your studies with ease.</string>
     <string name="second_intro">Input your class schedule, add deadlines and course notes, and set alerts to stay on track.</string>
     <string name="get_started">Get Started</string>
-    <!-- Schedule UI -->
     <string name="schedule">Schedule</string>
     <string name="view_terms">View Terms</string>
     <string name="view_courses">View Courses</string>
     <string name="view_assessments">View Assessments</string>
-    <!-- Terms UI -->
     <string name="term_title">Term Title Here</string>
     <string name="add_new_term">Add New Term</string>
     <string name="no_terms">There are no terms on your schedule. Please add a new term.</string>
@@ -44,23 +39,13 @@
     <string name="courses">Courses</string>
     <string name="delete_term">Delete Term</string>
     <string name="term_title_label">Term Title</string>
-    <!-- Courses UI -->
     <string name="add_new_course">Add New Course</string>
     <string name="view_course_details">View Course Details</string>
-
-    <!-- Assessments UI -->
     <string name="add_new_assessment">Add New Assessment</string>
     <string name="view_assessment_details">View Assessment Details</string>
-
-
-    <!-- Miscellaneous -->
     <string name="save">Save</string>
     <string name="enter_end_date">Enter End Date</string>
     <string name="enter_start_date">Enter Start Date</string>
-
-
-
-
     <string name="update_button">Update</string>
     <string name="delete_button">Delete</string>
     <string name="view_term_item">View Term Item</string>
@@ -115,5 +100,4 @@
     <string name="select_date">Select Date</string>
     <string name="user_selects_end_date_from_date_picker">User selects end date from date picker.</string>
     <string name="user_selects_start_date_on_date_picker">User selects start date on date picker.</string>
-
 </resources>
