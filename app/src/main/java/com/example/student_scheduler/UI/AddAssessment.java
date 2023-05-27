@@ -22,20 +22,22 @@ import java.util.Locale;
 import java.util.Objects;
 
 /**
- * This activity allows the user to add a new assessment to the database and displays the new
- * assessment on the screen with the listed assessments once the Save button is clicked.
+ * This activity allows the user to add a new assessment to a course and save it to the database.
  */
-
 public class AddAssessment extends AppCompatActivity {
 
+    // UI elements
     Button endDatePicker;
-    DatePickerDialog.OnDateSetListener myDate;
-    final Calendar myCalendar = Calendar.getInstance();
-
     EditText addAssessmentTitle;
+    Spinner assessmentTypeSpinner;
+
+    // Date picker
+    DatePickerDialog.OnDateSetListener myDate;
+    final Calendar endCalendar = Calendar.getInstance();
+
+    // Variables
     String assessmentTitleEdit;
     String assessmentEndEdit;
-
     int assessmentID;
     int courseID;
     Assessment assessment;
@@ -46,75 +48,89 @@ public class AddAssessment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_assessment);
 
-        // DatePicker
+        // Initialize UI elements
         endDatePicker = findViewById(R.id.end_date_picker);
+        addAssessmentTitle = findViewById(R.id.assessment_title_edit);
+        assessmentTypeSpinner = findViewById(R.id.assessment_type_spinnner);
+
+        // Initialize date format
         String formattedDate = "MM/dd/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        // Set initial text for date picker
         endDatePicker.setText(R.string.select_date);
+
+        // Configure click listener for date picker
         endDatePicker.setOnClickListener(view -> {
             String info = endDatePicker.getText().toString();
-            try{
-                myCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
-            }catch (ParseException e) {
+            try {
+                endCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
-            new DatePickerDialog(AddAssessment.this,myDate,
-                    myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),
-                    myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            new DatePickerDialog(AddAssessment.this, myDate,
+                    endCalendar.get(Calendar.YEAR), endCalendar.get(Calendar.MONTH),
+                    endCalendar.get(Calendar.DAY_OF_MONTH)).show();
         });
 
+        // Configure date selection listener for date picker
         myDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            endCalendar.set(Calendar.YEAR, year);
+            endCalendar.set(Calendar.MONTH, monthOfYear);
+            endCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateDate();
 
-            String selectedDate = simpleDateFormat.format(myCalendar.getTime());
+            String selectedDate = simpleDateFormat.format(endCalendar.getTime());
             endDatePicker.setText(selectedDate);
         };
 
+        // Retrieve details from intent
         courseID = getIntent().getIntExtra("course_id", courseID);
-        assessmentID = getIntent().getIntExtra("assessment_id",-1);
-
-        // Editable fields
-        addAssessmentTitle = findViewById(R.id.assessment_title_edit);
+        assessmentID = getIntent().getIntExtra("assessment_id", -1);
         assessmentTitleEdit = getIntent().getStringExtra("assessment_title");
         assessmentEndEdit = getIntent().getStringExtra("assessment_end");
+
+        // Set assessment title in the EditText
         addAssessmentTitle.setText(assessmentTitleEdit);
 
-        // Cancel and go back to course details
+        // Cancel button
         Button cancel = findViewById(R.id.cancel_button);
         cancel.setOnClickListener(view -> finish());
 
-        // Dropdown selection for assessment type
-        Spinner assessmentTypeSpinner = findViewById(R.id.assessment_type_spinnner);
+        // Assessment type spinner
         ArrayAdapter<CharSequence> typeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.type, android.R.layout.simple_spinner_item);
         typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         assessmentTypeSpinner.setAdapter(typeAdapter);
 
-        // Save fields
+        // Save button
         repository = new Repository(getApplication());
         Button saveAssessment = findViewById(R.id.add_assessment);
         saveAssessment.setOnClickListener(view -> {
-            assessment = new Assessment(0,courseID,
+            assessment = new Assessment(0, courseID,
                     addAssessmentTitle.getText().toString(),
-                    assessmentTypeSpinner.getSelectedItem().toString(),endDatePicker.getText().toString());
-                   //addAssessmentEnd.getText().toString());
+                    assessmentTypeSpinner.getSelectedItem().toString(),
+                    endDatePicker.getText().toString());
             repository.insert(assessment);
 
-            // Message to confirm add and back to term details
+            // Show confirmation message and finish the activity
             Toast.makeText(getApplication(), "Assessment was successfully added.",
                     Toast.LENGTH_SHORT).show();
             finish();
         });
-        // Display toolbar
+
+        // Enable back button in the action bar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
+
     /**
-     * This method handles the click event for the back button in the action bar. When the back
-     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
+     * Handles home button in the action bar. If the home button is selected, the activity is
+     * finished and the user is taken back to the previous screen.
+     *
+     * @param item The selected menu item.
+     * @return True if the item selection was handled.
      */
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -123,11 +139,13 @@ public class AddAssessment extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // Update date for date picker
-    private void updateDate(){
+    /**
+     * Updates the date picker with the selected date.
+     */
+    private void updateDate() {
         String formattedDate = "MM/dd/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
 
-        endDatePicker.setText(simpleDateFormat.format(myCalendar.getTime()));
+        endDatePicker.setText(simpleDateFormat.format(endCalendar.getTime()));
     }
 }
