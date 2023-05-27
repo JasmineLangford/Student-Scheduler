@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,26 +20,35 @@ import com.example.student_scheduler.database.Repository;
 import com.example.student_scheduler.entities.Term;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Objects;
 
+// ToDo: Fix Issue - start date and end date are updating the same.
+
 /**
- * This activity allows the user to view details for a selected term. The data is populated into
- * EditText fields for the user to modify or delete. If there are associated courses with this term,
- * the user will not be allowed to delete the term until all courses have been deleted.
- *
- * The user can also use the floating action button in the bottom right-hand corner to view
- * additional options related to the term.
+ * This activity allows the user to view and update term information. It also provides options to
+ * delete the term and navigate back to the previous screen.
  */
 public class TermDetails extends AppCompatActivity {
 
+    // UI elements
+    Button startDatePicker;
+    Button endDatePicker;
     EditText term_title;
-    EditText term_start;
-    EditText term_end;
 
+    // Date Picker
+    DatePickerDialog.OnDateSetListener startDate;
+    DatePickerDialog.OnDateSetListener endDate;
+    final Calendar startCalendar = Calendar.getInstance();
+    final Calendar endCalendar = Calendar.getInstance();
+
+    // Variables
     String termTitle;
     String termStart;
     String termEnd;
-
     int termID;
     Term term;
     CourseAdapter courseAdapter;
@@ -48,22 +59,76 @@ public class TermDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_details);
 
-        // Editable text fields
+        // Initialize UI elements
         term_title = findViewById(R.id.term_title_edit);
-        term_start = findViewById(R.id.term_start_edit);
-        term_end = findViewById(R.id.term_end_edit);
+        startDatePicker = findViewById(R.id.start_date_picker);
+        endDatePicker = findViewById(R.id.end_date_picker);
 
+        // Initialize date format
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        // Configure click listener for start date picker
+        startDatePicker.setOnClickListener(view -> {
+            String info = startDatePicker.getText().toString();
+            try {
+                startCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            new DatePickerDialog(TermDetails.this, startDate,
+                    startCalendar.get(Calendar.YEAR), startCalendar.get(Calendar.MONTH),
+                    startCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        // Configure date selection listener for start date picker
+        startDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+            startCalendar.set(Calendar.YEAR, year);
+            startCalendar.set(Calendar.MONTH, monthOfYear);
+            startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateStartDate();
+
+            String selectedStartDate = simpleDateFormat.format(startCalendar.getTime());
+            startDatePicker.setText(selectedStartDate);
+        };
+
+        // Configure click listener for end date picker
+        endDatePicker.setOnClickListener(view -> {
+            String info = endDatePicker.getText().toString();
+            try {
+                endCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            new DatePickerDialog(TermDetails.this, endDate,
+                    endCalendar.get(Calendar.YEAR), endCalendar.get(Calendar.MONTH),
+                    endCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        // Configure date selection listener for end date picker
+        endDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+            endCalendar.set(Calendar.YEAR, year);
+            endCalendar.set(Calendar.MONTH, monthOfYear);
+            endCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateEndDate();
+
+            String selectedEndDate = simpleDateFormat.format(endCalendar.getTime());
+            endDatePicker.setText(selectedEndDate);
+        };
+
+        // Retrieve details from intent
+        termID = getIntent().getIntExtra("term_id",termID);
         termTitle = getIntent().getStringExtra("term_title");
         termStart = getIntent().getStringExtra("term_start");
         termEnd= getIntent().getStringExtra("term_end");
 
+        // Update UI field with intent extra
         term_title.setText(termTitle);
-        term_start.setText(termStart);
-        term_end.setText(termEnd);
+        startDatePicker.setText(termStart);
+        endDatePicker.setText(termEnd);
 
+        // Set focus to the term title
         term_title.requestFocus();
-
-        termID = getIntent().getIntExtra("term_id",termID);
 
         // Display associated courses with the selected term
         RecyclerView courseListRecycler = findViewById(R.id.course_list_recycler);
@@ -73,22 +138,23 @@ public class TermDetails extends AppCompatActivity {
         courseListRecycler.setLayoutManager(new LinearLayoutManager(this));
         courseAdapter.setCourses(repository.getAssociatedCourses(termID));
 
-        // Update selected term and confirm update
+        // Update button
         Button updateTerm = findViewById(R.id.update_term);
         updateTerm.setOnClickListener(view -> {
                 term = new Term(termID, term_title.getText().toString(),
-                        term_start.getText().toString(), term_end.getText().toString());
+                        startDatePicker.getText().toString(), endDatePicker.getText().toString());
                 repository.update(term);
 
-                Toast.makeText(getApplication(), "Term was successfully updated.",
+            // Show confirmation message and finish the activity
+            Toast.makeText(getApplication(), "Term was successfully updated.",
                         Toast.LENGTH_SHORT).show();
                 finish();
         });
 
-        // Display toolbar
+        // Enable back button in the action bar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // Extended FAB with sub menu
+        // Set click listener for floating action button
         ExtendedFloatingActionButton termFab = findViewById(R.id.terms_extended_fab);
         termFab.setOnClickListener(this::showSubMenu);
     }
@@ -116,8 +182,11 @@ public class TermDetails extends AppCompatActivity {
     }
 
     /**
-     * This method handles the click event for the back button in the action bar. When the back
-     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
+     * Handles home button in the action bar. If the home button is selected, the activity is
+     * finished and the user is taken back to the previous screen.
+     *
+     * @param item The selected menu item.
+     * @return True if the item selection was handled.
      */
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
@@ -128,9 +197,12 @@ public class TermDetails extends AppCompatActivity {
     }
 
     /**
-     * This method is called when the floating action button is clicked. This popup menu provides
-     * the user two options: 1) adding a new term or 2) deleting the term.
+     * This method is called when the user clicks on the assessment floating action button, which
+     * displays the submenu.
+     *
+     * @param view The view that triggered the event.
      */
+    @SuppressLint("NonConstantResourceId")
     public void showSubMenu(View view) {
         PopupMenu termPopupMenu = new PopupMenu(this, view);
         termPopupMenu.getMenuInflater().inflate(R.menu.term_menu, termPopupMenu.getMenu());
@@ -156,14 +228,35 @@ public class TermDetails extends AppCompatActivity {
     }
 
     /**
-     * This method will delete the term.
+     * This method is called when the user selects the delete option from the term submenu,
+     * which deletes the current term.
      */
     private void deleteTerm() {
         Term term = new Term(termID, term_title.getText().toString(),
-                term_start.getText().toString(), term_end.getText().toString());
+                startDatePicker.getText().toString(), endDatePicker.getText().toString());
         repository.delete(term);
         Toast.makeText(this, "Term was successfully deleted.",
                 Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    /**
+     * Updates the start date picker with the selected date.
+     */
+    private void updateStartDate() {
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        startDatePicker.setText(simpleDateFormat.format(startCalendar.getTime()));
+    }
+
+    /**
+     * Updates the end date picker with the selected date.
+     */
+    private void updateEndDate() {
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        endDatePicker.setText(simpleDateFormat.format(endCalendar.getTime()));
     }
 }
