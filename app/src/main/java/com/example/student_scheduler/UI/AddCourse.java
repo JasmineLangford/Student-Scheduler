@@ -41,7 +41,6 @@ public class AddCourse extends AppCompatActivity {
     final Calendar startCalendar = Calendar.getInstance();
     final Calendar endCalendar = Calendar.getInstance();
 
-
     // Variables
     String courseTitleEdit;
     String courseStartEdit;
