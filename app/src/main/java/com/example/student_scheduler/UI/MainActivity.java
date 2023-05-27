@@ -4,14 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 
 import com.example.student_scheduler.R;
-import com.example.student_scheduler.database.Repository;
-import com.example.student_scheduler.entities.Course;
-import com.example.student_scheduler.entities.Term;
 
 import java.util.Objects;
 
@@ -25,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Button to enter main screen
         Button getStarted = findViewById(R.id.view_term);
         getStarted.setOnClickListener(view -> {
             Intent generateTerms = new Intent(MainActivity.this, TermList.class);
             startActivity(generateTerms);
         });
-        // Hide the action bar
+
+        // Enable back button in the action bar
         Objects.requireNonNull(getSupportActionBar()).hide();
     }
 }
