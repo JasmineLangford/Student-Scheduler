@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -24,27 +25,34 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
 /**
- * This activity allows the user to view details for a selected course. The data is populated into
- * EditText fields for the user to modify or delete.
- * <p>
- * The user can also use the floating action button in the bottom right-hand corner to view
- * additional options related to the course.
+ * This activity allows the user to view and update course information. It also provides options
+ * to delete the course and navigate back to the previous screen.
  */
 public class CourseDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    // UI elements
+    Button startDatePicker;
+    Button endDatePicker;
     EditText course_title;
-    EditText course_start;
-    EditText course_end;
     EditText instructor_name;
     EditText instructor_phone;
     EditText instructor_email;
     EditText course_notes;
     Spinner courseStatusSpinner;
 
+    // Date Picker
+    DatePickerDialog.OnDateSetListener startDate;
+    DatePickerDialog.OnDateSetListener endDate;
+    final Calendar startCalendar = Calendar.getInstance();
+    final Calendar endCalendar = Calendar.getInstance();
+
+    // Variables
     String courseTitle;
     String courseStart;
     String courseEnd;
@@ -52,7 +60,6 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     String instructorPhone;
     String instructorEmail;
     String courseNotes;
-
     int courseID;
     int termID;
     Course course;
@@ -64,18 +71,71 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_details);
 
-        termID = getIntent().getIntExtra("term_id", termID);
-        courseID = getIntent().getIntExtra("course_id", courseID);
-
-        // Editable text fields
+        // Initialize UI elements
         course_title = findViewById(R.id.course_title_edit);
-        course_start = findViewById(R.id.course_start_edit);
-        course_end = findViewById(R.id.course_end_edit);
+        startDatePicker = findViewById(R.id.start_date_picker);
+        endDatePicker = findViewById(R.id.end_date_picker);
         instructor_name = findViewById(R.id.instructor_name_edit);
         instructor_phone = findViewById(R.id.phone_edit);
         instructor_email = findViewById(R.id.email_edit);
         course_notes = findViewById(R.id.course_notes_edit);
+        courseStatusSpinner = findViewById(R.id.course_status_spinner);
 
+        // Initialize date format
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        // Configure click listener for start date picker
+        startDatePicker.setOnClickListener(view -> {
+            String info = startDatePicker.getText().toString();
+            try {
+                startCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            new DatePickerDialog(CourseDetails.this, startDate,
+                    startCalendar.get(Calendar.YEAR), startCalendar.get(Calendar.MONTH),
+                    startCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        // Configure date selection listener for start date picker
+        startDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+            startCalendar.set(Calendar.YEAR, year);
+            startCalendar.set(Calendar.MONTH, monthOfYear);
+            startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateStartDate();
+
+            String selectedStartDate = simpleDateFormat.format(startCalendar.getTime());
+            startDatePicker.setText(selectedStartDate);
+        };
+
+        // Configure click listener for end date picker
+        endDatePicker.setOnClickListener(view -> {
+            String info = endDatePicker.getText().toString();
+            try {
+                endCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            new DatePickerDialog(CourseDetails.this, endDate,
+                    endCalendar.get(Calendar.YEAR), endCalendar.get(Calendar.MONTH),
+                    endCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        // Configure date selection listener for end date picker
+        endDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+            endCalendar.set(Calendar.YEAR, year);
+            endCalendar.set(Calendar.MONTH, monthOfYear);
+            endCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateEndDate();
+
+            String selectedEndDate = simpleDateFormat.format(endCalendar.getTime());
+            endDatePicker.setText(selectedEndDate);
+        };
+
+        // Retrieve details from intent
+        termID = getIntent().getIntExtra("term_id", termID);
+        courseID = getIntent().getIntExtra("course_id", courseID);
         courseTitle = getIntent().getStringExtra("course_title");
         courseStart = getIntent().getStringExtra("course_start");
         courseEnd = getIntent().getStringExtra("course_end");
@@ -84,17 +144,19 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         instructorEmail = getIntent().getStringExtra("instructor_email");
         courseNotes = getIntent().getStringExtra("course_notes");
 
+        // Update UI fields with intent extras
         course_title.setText(courseTitle);
-        course_start.setText(courseStart);
-        course_end.setText(courseEnd);
+        startDatePicker.setText(courseStart);
+        endDatePicker.setText(courseEnd);
         instructor_name.setText(instructorName);
         instructor_phone.setText(instructorPhone);
         instructor_email.setText(instructorEmail);
         course_notes.setText(courseNotes);
 
+        // Set focus to the course title
         course_title.requestFocus();
 
-        // Display associated assessments with course
+        // Set up RecyclerView for displaying assessment list
         RecyclerView assessmentListRecycler = findViewById(R.id.assessment_list_recycler);
         repository = new Repository(getApplication());
         assessmentAdapter = new AssessmentAdapter(this);
@@ -102,8 +164,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         assessmentListRecycler.setLayoutManager(new LinearLayoutManager(this));
         assessmentAdapter.setAssessments(repository.getAssociatedAssessments(courseID));
 
-        // Dropdown selection for course status
-        courseStatusSpinner = findViewById(R.id.course_status_spinner);
+        // Course status spinner
         ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this,
                 R.array.status, android.R.layout.simple_spinner_item);
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -112,30 +173,36 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         String courseStatus = getIntent().getStringExtra("course_status");
         int position = statusAdapter.getPosition(courseStatus);
         courseStatusSpinner.setSelection(position);
-        courseStatusSpinner.requestFocus();
 
-        //Update selected course and confirm update
+        // Save button
         Button updateCourse = findViewById(R.id.update_course);
         updateCourse.setOnClickListener(view -> {
             course = new Course(courseID, termID, course_title.getText().toString(),
-                    course_start.getText().toString(), course_end.getText().toString(),
+                    startDatePicker.getText().toString(), endDatePicker.getText().toString(),
                     courseStatusSpinner.getSelectedItem().toString(),
                     instructor_name.getText().toString(), instructor_phone.getText().toString(),
                     instructor_email.getText().toString(), course_notes.getText().toString());
             repository.update(course);
 
+            // Show confirmation message and finish the activity
             Toast.makeText(this, "Course was successfully updated.", Toast.LENGTH_SHORT).show();
             finish();
         });
 
-        // Display toolbar
+        // Enable back button in the action bar
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        // Extended FAB with sub menu
+        // Set click listener for floating action button
         ExtendedFloatingActionButton courseFab = findViewById(R.id.courses_extended_fab);
         courseFab.setOnClickListener(this::showSubMenu);
     }
 
+    /**
+     * This method is called to populate the options menu with menu items.
+     *
+     * @param menu The menu object representing the options menu.
+     * @return True to display the menu.
+     */
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
@@ -164,17 +231,14 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    /**
-     * This method handles the click event for the back button in the action bar. When the back
-     * button is clicked, `onBackPressed()` is called to go back to the previous activity.
-     */
+    // ToDo: Javadoc comment
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
                 return true;
 
-            // Send notes
+            // Share course notes
             case R.id.share_notes:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
@@ -186,11 +250,12 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                 startActivity(shareIntent);
                 return true;
 
+                // ToDo: Alerts
 //            case R.id.notify_start:
 //                // Date and date format
 //                String dateFormat = "MM/dd/yyyy";
 //                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat,Locale.US);
-//                course_start.setText(simpleDateFormat.format(new Date()));
+//                startDatePicker.setText(simpleDateFormat.format(new Date()));
 //                Date thisDate = null;
 //                try{
 //                    thisDate.simpleDateFormat.parse(currentDate);
@@ -202,10 +267,11 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         return super.onOptionsItemSelected(item);
 
 }
-
     /**
-     * This method is called when the floating action button is clicked. This popup menu provides
-     * the user two options: 1) adding a new course or 2) deleting the course.
+     * This method is called when the user clicks on the assessment floating action button, which
+     * displays the submenu.
+     *
+     * @param view The view that triggered the event.
      */
     public void showSubMenu(View view) {
         PopupMenu coursePopupMenu = new PopupMenu(this, view);
@@ -242,7 +308,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
 
     private void deleteCourse() {
         Course course = new Course(courseID, termID, course_title.getText().toString(),
-                course_start.getText().toString(), course_end.getText().toString(),
+                startDatePicker.getText().toString(), endDatePicker.getText().toString(),
                 courseStatusSpinner.getSelectedItem().toString(),
                 instructor_name.getText().toString(), instructor_phone.getText().toString(),
                 instructor_email.getText().toString(), course_notes.getText().toString());
@@ -250,5 +316,25 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         Toast.makeText(this, "Course was successfully deleted.",
                 Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    /**
+     * Updates the start date picker with the selected date.
+     */
+    private void updateStartDate() {
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        startDatePicker.setText(simpleDateFormat.format(startCalendar.getTime()));
+    }
+
+    /**
+     * Updates the end date picker with the selected date.
+     */
+    private void updateEndDate() {
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        endDatePicker.setText(simpleDateFormat.format(endCalendar.getTime()));
     }
 }

@@ -34,7 +34,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/course_title"
                     android:textColor="@color/black"
                     android:textSize="16sp"
@@ -57,34 +57,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="48dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/start_date"
+                    android:layout_gravity="center"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/course_start_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:autofillHints=""
-                    android:hint="@string/date_format"
-                    android:inputType="date"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/hint_text"
-                    android:textSize="16sp" />
+                <Button
+                    android:id="@+id/start_date_picker"
+                    style="@style/DatePickerStyle"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/user_selects_end_date_from_date_picker"
+                    android:textStyle="normal"
+                    app:cornerRadius="0dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,45 +90,36 @@
                     android:text="@string/end_date"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:layout_gravity="center"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/course_end_edit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:autofillHints=""
-                    android:hint="@string/date_format"
-                    android:inputType="date"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/hint_text"
-                    android:textSize="16sp" />
+                <Button
+                    android:id="@+id/end_date_picker"
+                    style="@style/DatePickerStyle"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/user_selects_end_date_from_date_picker"
+                    android:textStyle="normal"
+                    app:cornerRadius="0dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/course_status"
+                    android:layout_gravity="center"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/course_status_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="15dp"
-                    android:background="#D13DDC"
-                    android:spinnerMode="dropdown"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:dropDownWidth="wrap_content"
+                    style="@style/SpinnerStyle"
                     android:contentDescription="@string/selection_for_course_status"/>
             </LinearLayout>
 
@@ -282,7 +271,7 @@
                 android:text="@string/update_button"
                 android:textStyle="bold"
                 android:textColor="@color/white"
-                app:cornerRadius="0dp"
+                app:cornerRadius="8dp"
                 app:layout_constraintBottom_toBottomOf="@+id/scrollViewCourse"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
