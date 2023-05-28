@@ -82,17 +82,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:text="@string/end_date"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" />
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/end_date_picker"
                     style="@style/DatePickerStyle"
                     android:contentDescription="@string/user_selects_end_date_from_date_picker"
-                    app:cornerRadius="0dp"/>
+                    app:cornerRadius="0dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -280,9 +280,9 @@
                 android:insetTop="0dp"
                 android:insetBottom="0dp"
                 android:text="@string/cancel_button"
-                app:cornerRadius="8dp"
                 android:textColor="@color/primary_button"
                 android:textStyle="bold"
+                app:cornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
