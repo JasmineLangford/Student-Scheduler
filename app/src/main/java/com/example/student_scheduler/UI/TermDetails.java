@@ -26,8 +26,6 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Objects;
 
-// ToDo: Fix Issue - start date and end date are updating the same.
-
 /**
  * This activity allows the user to view and update term information. It also provides options to
  * delete the term and navigate back to the previous screen.

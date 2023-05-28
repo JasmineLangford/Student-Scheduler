@@ -16,7 +16,7 @@ import com.example.student_scheduler.entities.Term;
 /**
  * This class represents the SQLite database for the scheduler application.
  */
-@Database(entities = {Term.class, Course.class, Assessment.class}, version = 2, exportSchema = false)
+@Database(entities = {Term.class, Course.class, Assessment.class}, version = 3, exportSchema = false)
 public abstract class SchedulerDatabaseBuilder extends RoomDatabase {
 
     /**

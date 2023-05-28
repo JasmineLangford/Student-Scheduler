@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,14 +11,21 @@
         android:roundIcon="@mipmap/ic_launch_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Studentscheduler"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <receiver
+            android:name=".UI.MyReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="TODO"
+            tools:ignore="ExportedReceiver" />
+
         <activity
             android:name=".UI.AddAssessment"
             android:exported="false"
             android:label="Add New Assessment"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.MaterialComponents"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -40,7 +47,7 @@
             android:label="Add New Term"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.MaterialComponents"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -62,7 +69,7 @@
             android:label="Course Details"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.MaterialComponents"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -87,7 +94,7 @@
             android:label="Term Details"
             android:parentActivityName=".UI.MainActivity"
             android:theme="@style/Theme.MaterialComponents"
-            android:windowSoftInputMode="adjustPan" >
+            android:windowSoftInputMode="adjustPan">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

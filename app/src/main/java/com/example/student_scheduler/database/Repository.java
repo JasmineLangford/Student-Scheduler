@@ -21,8 +21,6 @@ public class Repository {
     private final CourseDAO mCourseDAO;
     private final AssessmentDAO mAssessmentDAO;
     private List<Term> mAllTerms;
-    private List<Course> mAllCourses;
-    private List<Assessment> mAllAssessments;
     private List<Course> mAssociatedCourses;
     private List<Assessment> mAssociatedAssessments;
 
@@ -43,7 +41,7 @@ public class Repository {
     }
 
     public List<Term> getAllTerms() {
-        databaseExecutor.execute(()-> mAllTerms = mTermDAO.getAllTerms());
+        databaseExecutor.execute(() -> mAllTerms = mTermDAO.getAllTerms());
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
@@ -60,26 +58,6 @@ public class Repository {
             e.printStackTrace();
         }
         return mAssociatedCourses;
-    }
-
-    public List<Course> getAllCourses() {
-        databaseExecutor.execute(() -> mAllCourses = mCourseDAO.getAllCourses());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return mAllCourses;
-    }
-
-    public List<Assessment> getAllAssessments() {
-        databaseExecutor.execute(() -> mAllAssessments = mAssessmentDAO.getAllAssessments());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return mAllAssessments;
     }
 
     public List<Assessment> getAssociatedAssessments(int courseID) {

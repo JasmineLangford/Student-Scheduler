@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -204,7 +208,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
      * @return True to display the menu.
      */
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.course_submenu, menu);
         return true;
     }
 
@@ -242,7 +246,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
             case R.id.share_notes:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT,courseNotes);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, courseNotes);
                 sendIntent.putExtra(Intent.EXTRA_TITLE, "Send message title");
                 sendIntent.setType("text/plain");
 
@@ -250,29 +254,54 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                 startActivity(shareIntent);
                 return true;
 
-                // ToDo: Alerts
-//            case R.id.notify_start:
-//                // Date and date format
-//                String dateFormat = "MM/dd/yyyy";
-//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat,Locale.US);
-//                startDatePicker.setText(simpleDateFormat.format(new Date()));
-//                Date thisDate = null;
-//                try{
-//                    thisDate.simpleDateFormat.parse(currentDate);
-//                }catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                Long trigger = thisDate.getTime();
-    }
+            case R.id.notify_start:
+                String startDateFromScreen = startDatePicker.getText().toString();
+                String startDateFormat = "MM/dd/yyyy";
+                SimpleDateFormat sdfStart = new SimpleDateFormat(startDateFormat, Locale.US);
+                Date thisStartDate = null;
+                try {
+                    thisStartDate = sdfStart.parse(startDateFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long firstTrigger = thisStartDate.getTime();
+                Intent firstIntent = new Intent(CourseDetails.this, MyReceiver.class);
+                firstIntent.putExtra("key", "Course Reminder:" + " " +courseTitle + " " +
+                        "is set to begin on" + " " + startDateFromScreen);
+                PendingIntent firstSender = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, firstIntent, PendingIntent.FLAG_IMMUTABLE);
+                AlarmManager firstAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                firstAlarmManager.set(AlarmManager.RTC_WAKEUP, firstTrigger, firstSender);
+                return true;
+            case R.id.notify_end:
+                String dateFromScreen = endDatePicker.getText().toString();
+                String endDateFormat = "MM/dd/yyyy";
+                SimpleDateFormat sdfEnd = new SimpleDateFormat(endDateFormat, Locale.US);
+                Date thisDate = null;
+                try {
+                    thisDate = sdfEnd.parse(dateFromScreen);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                Long secondTrigger = thisDate.getTime();
+                Intent secondIntent = new Intent(CourseDetails.this, MyReceiver.class);
+                secondIntent.putExtra("key", "Course Reminder:" + " " +courseTitle + " " +
+                        "will be ending on" + " " + dateFromScreen);
+                PendingIntent secondSender = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.numAlert, secondIntent, PendingIntent.FLAG_IMMUTABLE);
+                AlarmManager secondAlarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+                secondAlarmManager.set(AlarmManager.RTC_WAKEUP, secondTrigger, secondSender);
+                return true;
+        }
         return super.onOptionsItemSelected(item);
 
-}
+    }
+
     /**
      * This method is called when the user clicks on the assessment floating action button, which
      * displays the submenu.
      *
      * @param view The view that triggered the event.
      */
+    @SuppressLint("NonConstantResourceId")
     public void showSubMenu(View view) {
         PopupMenu coursePopupMenu = new PopupMenu(this, view);
         coursePopupMenu.getMenuInflater().inflate(R.menu.course_menu, coursePopupMenu.getMenu());
