@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 /**
  * This class represents the courses table in the database.
  */
-@Entity(tableName="courses")
+@Entity(tableName = "courses")
 public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseID;

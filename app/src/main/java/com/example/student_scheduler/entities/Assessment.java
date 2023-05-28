@@ -2,6 +2,7 @@ package com.example.student_scheduler.entities;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 /**
  * This class represents the assessments table in the database.
  */
