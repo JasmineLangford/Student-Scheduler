@@ -27,17 +27,21 @@ import java.util.Objects;
 public class AddAssessment extends AppCompatActivity {
 
     // UI elements
+    Button startDatePicker;
     Button endDatePicker;
     EditText addAssessmentTitle;
     Spinner assessmentTypeSpinner;
 
     // Date picker
-    DatePickerDialog.OnDateSetListener myDate;
+    DatePickerDialog.OnDateSetListener startDate;
+    DatePickerDialog.OnDateSetListener endDate;
+    final Calendar startCalendar = Calendar.getInstance();
     final Calendar endCalendar = Calendar.getInstance();
 
     // Variables
     String assessmentTitleEdit;
     String assessmentEndEdit;
+    String assessmentStartEdit;
     int assessmentID;
     int courseID;
     Assessment assessment;
@@ -49,6 +53,7 @@ public class AddAssessment extends AppCompatActivity {
         setContentView(R.layout.activity_add_assessment);
 
         // Initialize UI elements
+        startDatePicker = findViewById(R.id.start_date_picker);
         endDatePicker = findViewById(R.id.end_date_picker);
         addAssessmentTitle = findViewById(R.id.assessment_title_edit);
         assessmentTypeSpinner = findViewById(R.id.assessment_type_spinnner);
@@ -58,9 +63,35 @@ public class AddAssessment extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
 
         // Set initial text for date picker
+        startDatePicker.setText(getString(R.string.select_date));
         endDatePicker.setText(R.string.select_date);
 
-        // Configure click listener for date picker
+
+        // Configure click listener for start date picker
+        startDatePicker.setOnClickListener(view -> {
+            String info = startDatePicker.getText().toString();
+            try {
+                startCalendar.setTime(Objects.requireNonNull(simpleDateFormat.parse(info)));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            new DatePickerDialog(AddAssessment.this, startDate,
+                    startCalendar.get(Calendar.YEAR), startCalendar.get(Calendar.MONTH),
+                    startCalendar.get(Calendar.DAY_OF_MONTH)).show();
+        });
+
+        // Configure date selection listener for start date picker
+        startDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+            startCalendar.set(Calendar.YEAR, year);
+            startCalendar.set(Calendar.MONTH, monthOfYear);
+            startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            updateStartDate();
+
+            String selectedStartDate = simpleDateFormat.format(startCalendar.getTime());
+            startDatePicker.setText(selectedStartDate);
+        };
+
+        // Configure click listener for end date picker
         endDatePicker.setOnClickListener(view -> {
             String info = endDatePicker.getText().toString();
             try {
@@ -68,20 +99,20 @@ public class AddAssessment extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            new DatePickerDialog(AddAssessment.this, myDate,
+            new DatePickerDialog(AddAssessment.this, endDate,
                     endCalendar.get(Calendar.YEAR), endCalendar.get(Calendar.MONTH),
                     endCalendar.get(Calendar.DAY_OF_MONTH)).show();
         });
 
-        // Configure date selection listener for date picker
-        myDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
+        // Configure date selection listener for end date picker
+        endDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
             endCalendar.set(Calendar.YEAR, year);
             endCalendar.set(Calendar.MONTH, monthOfYear);
             endCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateDate();
+            updateEndDate();
 
-            String selectedDate = simpleDateFormat.format(endCalendar.getTime());
-            endDatePicker.setText(selectedDate);
+            String selectedEndDate = simpleDateFormat.format(endCalendar.getTime());
+            endDatePicker.setText(selectedEndDate);
         };
 
         // Retrieve details from intent
@@ -89,6 +120,7 @@ public class AddAssessment extends AppCompatActivity {
         assessmentID = getIntent().getIntExtra("assessment_id", -1);
         assessmentTitleEdit = getIntent().getStringExtra("assessment_title");
         assessmentEndEdit = getIntent().getStringExtra("assessment_end");
+        assessmentStartEdit = getIntent().getStringExtra("assessment_start");
 
         // Update UI field with intent extra
         addAssessmentTitle.setText(assessmentTitleEdit);
@@ -110,6 +142,7 @@ public class AddAssessment extends AppCompatActivity {
             assessment = new Assessment(0, courseID,
                     addAssessmentTitle.getText().toString(),
                     assessmentTypeSpinner.getSelectedItem().toString(),
+                    startDatePicker.getText().toString(),
                     endDatePicker.getText().toString());
             repository.insert(assessment);
 
@@ -140,9 +173,19 @@ public class AddAssessment extends AppCompatActivity {
     }
 
     /**
-     * Updates the date picker with the selected date.
+     * Updates the start date picker with the selected date.
      */
-    private void updateDate() {
+    private void updateStartDate() {
+        String formattedDate = "MM/dd/yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
+
+        startDatePicker.setText(simpleDateFormat.format(startCalendar.getTime()));
+    }
+
+    /**
+     * Updates the end date picker with the selected date.
+     */
+    private void updateEndDate() {
         String formattedDate = "MM/dd/yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formattedDate, Locale.US);
 
