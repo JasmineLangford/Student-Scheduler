@@ -73,7 +73,7 @@
                     android:id="@+id/start_date_picker"
                     style="@style/DatePickerStyle"
                     android:layout_gravity="center"
-                    android:contentDescription="@string/user_selects_end_date_from_date_picker"
+                    android:contentDescription="@string/user_selects_start_date_on_date_picker"
                     android:textStyle="normal"
                     app:cornerRadius="0dp" />
             </LinearLayout>
