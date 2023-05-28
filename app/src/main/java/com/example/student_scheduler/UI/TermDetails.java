@@ -115,10 +115,10 @@ public class TermDetails extends AppCompatActivity {
         };
 
         // Retrieve details from intent
-        termID = getIntent().getIntExtra("term_id",termID);
+        termID = getIntent().getIntExtra("term_id", termID);
         termTitle = getIntent().getStringExtra("term_title");
         termStart = getIntent().getStringExtra("term_start");
-        termEnd= getIntent().getStringExtra("term_end");
+        termEnd = getIntent().getStringExtra("term_end");
 
         // Update UI field with intent extra
         term_title.setText(termTitle);
@@ -139,14 +139,14 @@ public class TermDetails extends AppCompatActivity {
         // Update button
         Button updateTerm = findViewById(R.id.update_term);
         updateTerm.setOnClickListener(view -> {
-                term = new Term(termID, term_title.getText().toString(),
-                        startDatePicker.getText().toString(), endDatePicker.getText().toString());
-                repository.update(term);
+            term = new Term(termID, term_title.getText().toString(),
+                    startDatePicker.getText().toString(), endDatePicker.getText().toString());
+            repository.update(term);
 
             // Show confirmation message and finish the activity
             Toast.makeText(getApplication(), "Term was successfully updated.",
-                        Toast.LENGTH_SHORT).show();
-                finish();
+                    Toast.LENGTH_SHORT).show();
+            finish();
         });
 
         // Enable back button in the action bar
@@ -173,8 +173,8 @@ public class TermDetails extends AppCompatActivity {
         courseAdapter.setCourses(repository.getAssociatedCourses(termID));
 
         // Display if there are no associated courses
-        if(courseListRecycler.getAdapter() != null && courseListRecycler.getAdapter().getItemCount() == 0){
-            Toast.makeText(this,"No courses. Please add a course.", Toast.LENGTH_SHORT).show();
+        if (courseListRecycler.getAdapter() != null && courseListRecycler.getAdapter().getItemCount() == 0) {
+            Toast.makeText(this, "No courses. Please add a course.", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -212,9 +212,9 @@ public class TermDetails extends AppCompatActivity {
                     startActivity(toAddCourse);
                     break;
                 case R.id.delete_term:
-                    if (courseAdapter.getItemCount() > 0 ){
+                    if (courseAdapter.getItemCount() > 0) {
                         Toast.makeText(TermDetails.this, "Please delete associated " +
-                                "courses before deleting this term.",Toast.LENGTH_SHORT).show();
+                                "courses before deleting this term.", Toast.LENGTH_SHORT).show();
                     } else {
                         deleteTerm();
                     }

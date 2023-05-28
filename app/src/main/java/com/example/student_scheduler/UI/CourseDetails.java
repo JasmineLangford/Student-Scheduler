@@ -235,7 +235,12 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
         }
     }
 
-    // ToDo: Javadoc comment
+    /**
+     * Handles the selection of options in the menu.
+     *
+     * @param item The selected menu item.
+     * @return True if the selection is handled.
+     */
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -335,6 +340,10 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 
+    /**
+     * This method is called when the user selects the delete option from the course submenu,
+     * which deletes the current course.
+     */
     private void deleteCourse() {
         Course course = new Course(courseID, termID, course_title.getText().toString(),
                 startDatePicker.getText().toString(), endDatePicker.getText().toString(),

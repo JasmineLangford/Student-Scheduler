@@ -2,6 +2,7 @@ package com.example.student_scheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
@@ -29,8 +30,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
-
-// ToDo: add alerts
 
 /**
  * This activity allows the user to view and update assessment information. It also provides options
@@ -182,12 +181,12 @@ public class AssessmentDetails extends AppCompatActivity {
     }
 
     /**
-     * Handles home button in the action bar. If the home button is selected, the activity is
-     * finished and the user is taken back to the previous screen.
+     * Handles the selection of options in the menu.
      *
      * @param item The selected menu item.
-     * @return True if the item selection was handled.
+     * @return True if the selection is handled.
      */
+    @SuppressLint("NonConstantResourceId")
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:

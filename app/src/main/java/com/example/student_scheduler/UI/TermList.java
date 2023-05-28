@@ -63,9 +63,9 @@ public class TermList extends AppCompatActivity {
         termAdapter.setTerms(allTerms);
 
         // Display if there are no terms
-        if(termListRecycler.getAdapter() != null &&
-                termListRecycler.getAdapter().getItemCount() == 0){
-            Toast.makeText(this,"No terms. Please add a term.",
+        if (termListRecycler.getAdapter() != null &&
+                termListRecycler.getAdapter().getItemCount() == 0) {
+            Toast.makeText(this, "No terms. Please add a term.",
                     Toast.LENGTH_SHORT).show();
         }
     }

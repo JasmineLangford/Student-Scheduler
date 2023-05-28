@@ -16,6 +16,9 @@ import com.example.student_scheduler.entities.Term;
 
 import java.util.List;
 
+/**
+ * Adapter class for displaying Term items in a RecyclerView.
+ */
 public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermListHolder> {
     class TermListHolder extends RecyclerView.ViewHolder {
         private final TextView termItemView;

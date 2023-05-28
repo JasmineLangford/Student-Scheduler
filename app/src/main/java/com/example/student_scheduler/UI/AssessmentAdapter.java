@@ -16,6 +16,9 @@ import com.example.student_scheduler.entities.Assessment;
 
 import java.util.List;
 
+/**
+ * Adapter class for displaying Assessment items in a RecyclerView.
+ */
 public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.AssessmentViewHolder> {
     class AssessmentViewHolder extends RecyclerView.ViewHolder {
         private final TextView assessmentTitleView;

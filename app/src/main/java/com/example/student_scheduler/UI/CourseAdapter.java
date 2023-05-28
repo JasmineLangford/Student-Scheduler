@@ -1,5 +1,6 @@
 package com.example.student_scheduler.UI;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -15,6 +16,9 @@ import com.example.student_scheduler.entities.Course;
 
 import java.util.List;
 
+/**
+ * Adapter class for displaying Course items in a RecyclerView.
+ */
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseListHolder> {
     class CourseListHolder extends RecyclerView.ViewHolder {
         private final TextView courseTitleView;
@@ -87,9 +91,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseList
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setCourses(List<Course> courses) {
         mCourses = courses;
         notifyDataSetChanged();
     }
-
 }
