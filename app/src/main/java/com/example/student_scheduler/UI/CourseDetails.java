@@ -319,10 +319,7 @@ public class CourseDetails extends AppCompatActivity implements AdapterView.OnIt
                     startActivity(toAddAssessment);
                     break;
                 case R.id.delete_course:
-                    if (assessmentAdapter.getItemCount() > 0) {
-                        Toast.makeText(CourseDetails.this, "Please delete associated " +
-                                "assessments before deleting this course.", Toast.LENGTH_SHORT).show();
-                    } else {
+                    if (menuItem.getItemId() == R.id.delete_course) {
                         deleteCourse();
                     }
                     break;
