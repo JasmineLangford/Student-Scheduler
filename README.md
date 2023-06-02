@@ -1,8 +1,10 @@
 # Student Scheduler
 
-<!-- <p align="left">
-<img width="550" height="350" src="login-screen.png">
-</p> -->
+<p align="left">
+<img width="150" height="300" src="1_splash_screen.png">
+<img width="150" height="300" src="3_term_list.png"> 
+<img width="150" height="300" src="course_details_2.png"> 
+</p>
 
 This mobile application provides a convenient way for students to manage their academic schedule, including terms, courses, assessments, and alerts to stay organized throughout their academic journey.
 
