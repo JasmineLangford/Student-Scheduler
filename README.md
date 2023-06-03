@@ -20,7 +20,7 @@ This mobile application provides a convenient way for students to manage their a
 ## Technologies Used
 
 - Java
-- Android Studio
+- Android Studio + Room Database
 
 ## Image Credits
 
