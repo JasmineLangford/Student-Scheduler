@@ -8,6 +8,8 @@
 
 This mobile application provides a convenient way for students to manage their academic schedule, including terms, courses, assessments, and alerts to stay organized throughout their academic journey.
 
+The application flow can be found here on Figma: https://www.figma.com/file/tVWnoPHNOugNfdyG8sMiS5/C195_AppFlow_V1?type=whiteboard&node-id=0%3A1&t=WXPNu0GefGEEA8SQ-1
+
 ## Features
 
 - Term Management: Add, modify, and delete academic terms.
